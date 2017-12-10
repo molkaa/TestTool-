@@ -1,0 +1,7 @@
+parameters:
+#    ts_admin.example.class: TS\AdminBundle\Example
+
+services:
+#    ts_admin.example:
+#        class: %ts_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

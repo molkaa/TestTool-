@@ -1,0 +1,18 @@
+{# src/TS/AdminBundle/Resources/views/Tests/menuTest.html.twig #}
+
+{% set separator= "+" %}
+    
+<div class="form-row">
+    <div class="col-md-6">
+        {% for response in question.responses %}
+            <div class="form-label col-md-4">
+                <label for="{{question.id}}">
+                    {{response.response}}
+                </label>
+            </div>
+            <div class="form-input col-md-8">
+                <input disabled placeholder="" class="col-md-6" type="text" name="{{question.id}}{{separator}}{{response.id}}" id="">
+            </div>
+        {%endfor %}
+    </div>
+</div>

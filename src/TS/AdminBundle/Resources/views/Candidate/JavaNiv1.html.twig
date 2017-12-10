@@ -1,0 +1,152 @@
+{# src/TS/EvaluatorBundle/Resources/views/Candidat/JavaNiv1.html.twig #}
+{% extends "TSAdminBundle:Candidate:candidatTests.html.twig" %}
+{% block content %}
+
+    <div class="row ">
+        <div class="col-md-12" style="margin-top:20px">
+            <div class="content-box border-top border-bottom border-blue mrg25B col-md-11 center-margin">
+                <h3 class="content-header">
+                    <span> <b> Java Niveau1 </b></span>
+                </h3>
+                <div class="content-box-wrapper">
+                    <p class="col-md-12">  <b> Q1 : Comment indiquer qu'une classe A hérite d'une classe B ?</b></p>
+
+                    <div class="row">
+                        <p class="col-md-12"> 
+                        <div class="form-checkbox-radio col-md-9">
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">class A::B</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">class A extends B</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">class A implements B</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">class A inherit B</label>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="divider" ></div>
+                    {#                //************************************************#}
+                    <p class="col-md-12">  <b> Q2 : Que signifie le mot clef "static" associé à un attribut ?</b></p>
+
+                    <div class="row">
+                        <p class="col-md-12"> 
+                        <div class="form-checkbox-radio col-md-9">
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Que la valeur de cet attribut est constante</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Que cet attribut n'est visible que dans la classe où il est défini</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Que cet attribut sera toujours passé par valeur</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Que cet attribut a une valeur unique pour toutes les instances de la classe</label>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                    {#                //************************************************#}
+                    <div class="divider" ></div>
+                    <p class="col-md-12">  <b> Q3 : Au sujet du mot clef "abstract", quelle assertion est fausse ?</b></p>
+
+                    <div class="row">
+                        <p class="col-md-12"> 
+                        <div class="form-checkbox-radio col-md-9">
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Une classe abstraite ne peut être instanciée</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Une méthode abstraite n'a pas d'implémentation</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Une classe abstraite n'a pas forcément de classe fille</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Une classe abstraite doit contenir au moins une méthode abstraite</label>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                    {#                //************************************************#}
+                    <div class="divider" ></div>
+                    <p class="col-md-12">  <b> Q4 : Child est une classe héritant de la classe Parent. myChild et myParent sont des instances respectivement de Child et Parent. 
+                            Quel code ne compile pas ?</b></p>
+
+                    <div class="row">
+                        <p class="col-md-12"> 
+                        <div class="form-checkbox-radio col-md-9">
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">'Parent p = new Child();'</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">'myParent = myChild;'</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">'myParent = myChild;'</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">'myChild = (MyChild)myParent;'</label>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                    {#                //************************************************#}
+                    <div class="divider" ></div>
+                    <p class="col-md-12">  <b> Q5 : Que sont les classes du package javax ?</b></p>
+
+                    <div class="row">
+                        <p class="col-md-12"> 
+                        <div class="form-checkbox-radio col-md-9">
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Des ponts Java-ActiveX</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Des extensions du langage Java standard</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Des classes Java pour X-Windows</label>
+                            </div>
+                            <div class="checkbox-radio">
+                                <input type="checkbox" name="" id="">
+                                <label for="">Des classes Java multi-plateformes</label>
+                            </div>
+                        </div>
+                        </p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="divider" ></div>
+            <input type="hidden" name="superhidden" id="superhidden">
+            <div class="col-md-4 col-md-offset-4">
+                <input type="submit" value="ADD" name="submitAction" class="btn medium primary-bg radius-all-4" />
+            </div>
+        </div>
+    </div>
+{% endblock %}

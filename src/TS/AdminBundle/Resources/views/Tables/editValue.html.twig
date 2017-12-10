@@ -1,0 +1,48 @@
+{# src/TS/AdminBundle/Resources/views/Tables/editValue.html.twig #}
+
+<div class="row">
+    <div class="col-md-11 center-margin" style="margin-right: 0;">
+        <div  style="margin: 20px" class="content-box box-toggle">
+                <h3 style="height: 20px;" class="content-box-header ui-state-default">
+                    <span class="float-left">Edit this value</span>
+                    <i id="edit-value{{id}}" onclick="changeEditValue(this);" class="glyph-icon icon-clock-os float-right" style="margin-right: 10px;color:#d60000;"></i>
+                </h3>
+                <div  class="content-box-wrapper">
+                    <form class="col-md-10 center-margin" action="{{path('ts_admin_editValue')}}?id={{id}}&entity={{entity}}&entityType={{entityType}}"  method="post"{{ form_enctype(form) }}>                
+{#                    //*********************************************#}
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label for="">
+                                {{ form_label(form.name) }}
+                                </label>
+                            </div>
+                            <div class="form-input col-md-10">
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div>
+{#                    //*********************************************#}
+                    {{ form_rest(form) }}
+                        <div class="form-row">
+                            <div class="divider" ></div>
+                            <div class="col-md-2 col-md-offset-5">
+                                <input type="submit" value="Submit" style="background: #d60000"class="btn medium primary-bg radius-all-4" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+<script>
+    function changeEditValue(_this)
+    {
+        var div = document.getElementById(_this.id + '#');
+
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        }
+        else {
+            div.style.display = "none";
+        }
+    }
+</script>

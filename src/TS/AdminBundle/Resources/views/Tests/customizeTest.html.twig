@@ -1,0 +1,326 @@
+{# src/TS/AdminBundle/Resources/views/Tests/editQuestion.html.twig #}
+<form class="left-side" action="{{ path('ts_admin_customizeTest')}}?id={{id}}"  id="customizetest{{test.id}}" method="post">
+   
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">Customize Test  :  </h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="example-box">
+            <div class="example-code">
+
+                <div class="row clearfix">
+                    <div class="col-md-3">
+                        <div class="chart easyPieChart" data-percent="{{nbr_questions}}" style="width: 100px; height: 100px; line-height: 100px;">
+                            <span></span>
+                            <canvas width="100" height="100"></canvas></div>
+                        <div class="text-center pad10T font-size-15 font-gray text-transform-upr">Number of all questions</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="chart easyPieChart" data-percent="{{easy}}" style="width: 100px; height: 100px; line-height: 100px;">
+                            <span></span>%
+                            <canvas width="100" height="100"></canvas></div>
+                        <div class="text-center pad10T font-size-15 font-gray text-transform-upr">Percentage of all esasy questions</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="chart easyPieChart" data-percent="{{medium}}" style="width: 100px; height: 100px; line-height: 100px;">
+                            <span></span>%
+                            <canvas width="100" height="100"></canvas></div>
+                        <div class="text-center pad10T font-size-15 font-gray text-transform-upr">Percentage of all medium questions</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="chart easyPieChart" data-percent="{{hard}}" style="width: 100px; height: 100px; line-height: 100px;">
+                            <span></span>%
+                            <canvas width="100" height="100"></canvas></div>
+                        <div class="text-center pad10T font-size-15 font-gray text-transform-upr">Percentage of all hard questions</div>
+                    </div>
+                            
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="form-row" id="error_nbr_questions{{test.id}}" style="display: none">
+                <div class="infobox error-bg mrg0A">
+                    <p>number of question is greater than <b>{{nbr_questions - 1}} questions or less than 0</b> </p>
+                 </div>
+                </div>
+                 
+                <div class="form-row" id="error_percentage{{test.id}}"  style="display: none" >
+                <div class="infobox error-bg mrg0A ">
+                    <p>Percentage of all questions is not equal to <b>100%</b> </p>
+                   
+                </div>
+                </div>
+                
+                <div class="form-row" id="error_comma{{test.id}}"  style="display: none">
+                <div class="infobox error-bg mrg0A "  >
+                    <p>Percentage can't be a float </p>
+                    
+                </div>
+                </div>
+               
+                <div class="form-row" id="msg_note{{test.id}}"  style="display: none" >
+                <div class="infobox error-bg mrg0A " >
+                    <p>Test Mark must be greater than 0 </p>
+                    
+                </div>
+                </div>
+                
+                <div class="form-row" id="msg_nbr_qst{{test.id}}"  style="display: none" >
+                <div class="infobox error-bg mrg0A " >
+                    <p>Number of questions must be greater than 0 </p>
+                    
+                </div>
+                </div>
+                
+                <div class="form-row" id="msg_elim_mark{{test.id}}"  style="display: none" >
+                 <div class="infobox error-bg mrg0A " >
+                    <p>Eliminatory mark must be greater than 0  </p>
+                   
+                </div>
+                </div>
+                 
+                <div class="form-row" id="msg_perc_supp{{test.id}}"  style="display: none" >
+                 <div class="infobox error-bg mrg0A " >
+                    <p>Percentage can't be greater than global percentage  </p>
+                   
+                </div>
+                </div>
+            </div>
+
+            <div  id="checkbox{{test.id}}#" class="content-box box-toggle content-box-closed">
+                <h3 class="content-box-header ui-state-default">
+                    <span class="float-left">Update default statistics </span>
+                    <a class="float-right icon-separator btn toggle-button">
+                        <i id="checkbox{{test.id}}" onclick="VerifStateEdit(this, 'nbr_questions{{test.id}}', 'easy{{test.id}}', 'medium{{test.id}}', 'hard{{test.id}}');" class="glyph-icon icon-toggle icon-chevron-down"></i>
+                    </a>
+                </h3>
+                <div  class="content-box-wrapper">
+
+
+
+
+
+
+
+
+
+                    <div  id="big-box#" class="content-box box-toggle">
+
+
+                        {% if test.TestStatestics == NULL %}
+                            
+                           <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                       Test Mark 
+                                    </label>
+
+                                     <span class="required" style="color:red">*</span>
+
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input  type="number" name="test_mark" id="test_mark{{test.id}}" required="true" >
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                       Eliminatory Mark 
+                                    </label>
+
+                               <span class="required" style="color:red">*</span>         
+
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input  type="number" name="elim_mark" id="elim_mark{{test.id}}" required="true" >
+                                </div>
+
+                            </div>
+                                
+                            <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        Number of questions 
+                                    </label>
+
+                                 <span class="required" style="color:red">*</span>
+
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input value="0" type="number" name="nbr_questions" id="nbr_questions{{test.id}}"  >
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-input col-md-2 ">
+                                    <label for="">
+                                        Percentage of esasy questions (%) :
+                                    </label>
+
+
+                                </div>
+                                <div class="form-input col-md-6 ">
+                                    <input value="0" type="number" name="easy" id="easy{{test.id}}" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        Percentage of medium questions (%) :
+                                    </label>
+
+
+                                </div>
+                                <div class="form-input col-md-6">
+                                    <input value="0" type="number" name="medium" id="medium{{test.id}}" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        percentage of hard questions (%) :
+
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input value="0" type="number" name="hard" id="hard{{test.id}}" >
+                                </div>
+                            </div>  
+                                   
+                        {%else%}
+                             <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                       Eliminatory Mark
+                                    </label>
+                                 <span class="required" style="color:red">*</span>
+
+
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input value="{{test.TestStatestics.eliminatoryNote}}" type="number" name="elim_mark" id="elim_mark{{test.id}}">
+                                </div>
+
+                            </div>
+                                
+                             <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        Test Mark
+                                    </label>
+                                    <span class="required" style="color:red">*</span>
+
+
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input value="{{test.TestStatestics.note}}"  type="number" name="test_mark" id="test_mark{{test.id}}">
+                                </div>
+
+                            </div>
+
+                            <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        Number of questions
+                                    </label>
+                                    <span class="required" style="color:red">*</span>
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input value="{{test.TestStatestics.numberQuestions}}" type="number" name="nbr_questions" id="nbr_questions{{test.id}}" >
+                                </div>
+
+                            </div>
+                                
+                            <div class="form-row">
+                                <div class="form-input col-md-2 ">
+                                    <label for="">
+                                        Percentage of esasy questions (%) 
+                                    </label>
+
+
+                                </div>
+                                <div class="form-input col-md-6 ">
+                                    <input value="{{test.TestStatestics.percenteasy}}" type="number" name="easy" id="easy{{test.id}}">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        Percentage of medium questions (%) 
+                                    </label>
+
+
+                                </div>
+                                <div class="form-input col-md-6">
+                                    <input value="{{test.TestStatestics.percentMedium}}" type="number" name="medium" id="medium{{test.id}}" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        percentage of hard questions (%) 
+
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-6" >
+                                    <input value="{{test.TestStatestics.percentHard}}" type="number" name="hard" id="hard{{test.id}}" >
+                                </div>
+                            </div>  
+                             
+
+                        {%endif%}
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="modal-footer">
+        <div class="col-md-1 float-right">
+            <input type="button" value="Edit" onclick="verifQuestions({{nbr_questions}}, 'nbr_questions{{test.id}}', 'easy{{test.id}}', 'medium{{test.id}}', 'hard{{test.id}}','test_mark{{test.id}}','elim_mark{{test.id}}','checkbox{{test.id}}', 'error_nbr_questions{{test.id}}', 'error_percentage{{test.id}}','msg_perc_supp{{test.id}}', 'error_comma{{test.id}}','msg_note{{test.id}}','msg_nbr_qst{{test.id}}','msg_elim_mark{{test.id}}','customizetest{{test.id}}','{{easy}}','{{hard}}','{{medium}}');" class="btn medium primary-bg" />
+
+        </div>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+</form>
+
+
+ {% include "TSAdminBundle:Tests:customizeTestValidation.html.twig"  %} 
+

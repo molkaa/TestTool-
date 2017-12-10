@@ -1,0 +1,70 @@
+<form class="left-side" action="{{ path('ts_admin_otherInvitation', {'id': candidate.id})}}" method="post">
+
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">{{candidate.username}} </h3>
+    </div>
+    <div class="modal-body">
+
+
+                    
+      
+             <div class="form-row">
+                    <div class="form-input col-md-2">
+                        <label >
+                            date <span class="required" style="color:red" >*</span>
+                        </label>
+                    </div>
+                    <div class="form-input col-md-8">
+                        <input required="required" type="text" id="datepicker2" name="date" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-input col-md-2">
+                        <label >
+                            hour <span class="required" style="color:red" >*</span>
+                        </label>
+                    </div>
+                    <div class="form-input bootstrap-timepicker dropdown col-md-8 required" >
+                        <input required="required" class="timepicker input" id="timepicker_24" name="hour" type="text">
+                    </div>
+                </div>
+
+                
+
+
+                <div id ="tests" class="form-row">
+                    <div class="form-input col-md-2">
+                        <label for="">
+                            tests <span class="required" style="color:red" >*</span>
+                        </label>
+                    </div>
+                    <div  class="form-input col-md-8" >
+                        <select id="testsSelect" name="tests[]"  multiple class="chosen-select" required="required">
+                            <option></option>
+                                {% for test in allTests%}
+                            <option  value={{test.id}}>{{test.name}}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+    </div>
+    <div class="modal-footer">
+
+
+
+  <div class="col-md-1 float-right">
+            <input type="submit" value="Validate" name="submitAction" class="btn medium primary-bg radius-all-4" />
+
+        </div>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="btn medium primary-bg radius-all-4" data-toggle="button">Close</button>
+
+
+    </div>
+
+ </form>

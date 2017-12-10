@@ -1,0 +1,61 @@
+{# src/TS/AdminBundle/Resources/views/Admin/editFreeTest.html.twig #}
+ 
+<tr> 
+    <td>
+        {{test.name}}
+    </td>
+    <td>
+        {% if test.dateSubmit is not empty  %} 
+        {{test.dateSubmit.format(' jS  F Y h:i:s A')}}
+        {% endif %}
+    </td>
+      <td>
+         {% if testP.Customized is sameas("yes") and testP.TestStatestics is not null  %}
+         {{ testP.TestStatestics.eliminatoryNote }}
+          {% else%}
+        {{testP.eliminatoryNote}}
+        {% endif %}
+        
+    </td>
+    <td>
+        
+        {% if (test.mark  is null ) or (test.mark < 0 ) %}
+            0/
+             {% if testP.Customized is sameas("yes") and testP.TestStatestics is not null  %}
+                 {{testP.TestStatestics.note}}
+            {% else %}
+                {{testP.note}}
+            {% endif %}
+            
+        {% else %}
+        {{test.mark}}/
+             {% if testP.Customized is sameas("yes") and testP.TestStatestics is not null  %}
+                 {{testP.TestStatestics.note}}
+            {%else%}
+                {{testP.note}}
+            {% endif %}
+        {% endif %}
+    </td>
+    <td>
+        {% if test.note is not null %}
+            {{test.note}}
+        {% endif %}
+    </td>
+    <td> 
+        <a href="#ViewTest{{test.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="View Test">
+            <i style="font-size: 2,5em;" class="glyph-icon icon-eye"></i>
+        </a>
+   
+    </td>
+   
+    <td> 
+        {% if test.note is same as ('need correction') %}
+            <a href="#CheckAnswer{{test.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="Correcting Answer">
+            <i style="font-size: 2,5em;" class="glyph-icon icon-pencil-square-o"></i>
+        </a>
+          
+        {% endif %}
+    </td>
+</tr>
+{% include "TSAdminBundle:Admin:ModalCorrectingFreeQuestions.html.twig"  %} 
+{% include "TSAdminBundle:Candidate:ModalViewTestCandidate.html.twig"  %}

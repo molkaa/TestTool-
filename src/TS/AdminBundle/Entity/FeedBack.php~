@@ -1,0 +1,435 @@
+<?php
+
+namespace TS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FeedBack
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TS\AdminBundle\Entity\FeedBackRepository")
+ */
+class FeedBack {
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\CandidatBundle\Entity\Candidate", cascade={"persist"})
+     */
+    private $candidate;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\AdminBundle\Entity\Evaluator", cascade={"persist"})
+     */
+    private $evaluator;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\AdminBundle\Entity\Offers", cascade={"persist"})
+     */
+    private $offer;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="presentability", type="string", length=5)
+     */
+    private $presentability;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attitude", type="string", length=5)
+     */
+    private $attitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="civility", type="string", length=5)
+     */
+    private $civility;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="evaluation", type="string", length=50)
+     */
+    private $evaluation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interview", type="string", length=50)
+     */
+    private $interview;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="note", type="string", length=50)
+     */
+    private $note;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="technical ", type="string", length=50 , nullable=true)
+     */
+    private $technical ;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="communication ", type="string", length=50, nullable=true)
+     */
+    private $communication ;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="relationship  ", type="string", length=50, nullable=true)
+     */
+    private $relationship ;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="innovation ", type="string", length=50, nullable=true)
+     */
+    private $innovation;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="agility ", type="string", length=50, nullable=true)
+     */
+    private $agility ;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="acumen ", type="string", length=50, nullable=true)
+     */
+    private $acumen;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="project  ", type="string", length=50, nullable=true)
+     */
+    private $project ;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="team ", type="string", length=50, nullable=true)
+     */
+    private $team ;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="leadership ", type="string", length=50, nullable=true)
+     */
+    private $leadership;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comments", type="text")
+     */
+    private $comments;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->date = new \DateTime();
+        $this->candidate = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->evaluator = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->offer = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set presentability
+     *
+     * @param string $presentability
+     * @return FeedBack
+     */
+    public function setPresentability($presentability) {
+        $this->presentability = $presentability;
+
+        return $this;
+    }
+
+    /**
+     * Get presentability
+     *
+     * @return string 
+     */
+    public function getPresentability() {
+        return $this->presentability;
+    }
+
+    /**
+     * Set attitude
+     *
+     * @param string $attitude
+     * @return FeedBack
+     */
+    public function setAttitude($attitude) {
+        $this->attitude = $attitude;
+
+        return $this;
+    }
+
+    /**
+     * Get attitude
+     *
+     * @return string 
+     */
+    public function getAttitude() {
+        return $this->attitude;
+    }
+
+    /**
+     * Set civility
+     *
+     * @param string $civility
+     * @return FeedBack
+     */
+    public function setCivility($civility) {
+        $this->civility = $civility;
+
+        return $this;
+    }
+
+    /**
+     * Get civility
+     *
+     * @return string 
+     */
+    public function getCivility() {
+        return $this->civility;
+    }
+
+    /**
+     * Set evaluation
+     *
+     * @param string $evaluation
+     * @return FeedBack
+     */
+    public function setEvaluation($evaluation) {
+        $this->evaluation = $evaluation;
+
+        return $this;
+    }
+
+    /**
+     * Get evaluation
+     *
+     * @return string 
+     */
+    public function getEvaluation() {
+        return $this->evaluation;
+    }
+
+    /**
+     * Set comments
+     *
+     * @param string $comments
+     * @return FeedBack
+     */
+    public function setComments($comments) {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return string 
+     */
+    public function getComments() {
+        return $this->comments;
+    }
+
+    /**
+     * Add candidate
+     *
+     * @param \TS\CandidatBundle\Entity\Candidate $candidate
+     * @return FeedBack
+     */
+    public function addCandidate(\TS\CandidatBundle\Entity\Candidate $candidate) {
+        $this->candidate[] = $candidate;
+
+        return $this;
+    }
+
+    /**
+     * Remove candidate
+     *
+     * @param \TS\CandidatBundle\Entity\Candidate $candidate
+     */
+    public function removeCandidate(\TS\CandidatBundle\Entity\Candidate $candidate) {
+        $this->candidate->removeElement($candidate);
+    }
+
+    /**
+     * Get candidate
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCandidate() {
+        return $this->candidate;
+    }
+
+    /**
+     * Add evaluator
+     *
+     * @param \TS\AdminBundle\Entity\Evaluator $evaluator
+     * @return FeedBack
+     */
+    public function addEvaluator(\TS\AdminBundle\Entity\Evaluator $evaluator) {
+        $this->evaluator[] = $evaluator;
+
+        return $this;
+    }
+
+    /**
+     * Remove evaluator
+     *
+     * @param \TS\AdminBundle\Entity\Evaluator $evaluator
+     */
+    public function removeEvaluator(\TS\AdminBundle\Entity\Evaluator $evaluator) {
+        $this->evaluator->removeElement($evaluator);
+    }
+
+    /**
+     * Get evaluator
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvaluator() {
+        return $this->evaluator;
+    }
+
+    /**
+     * Add offer
+     *
+     * @param \TS\AdminBundle\Entity\Offers $offer
+     * @return FeedBack
+     */
+    public function addOffer(\TS\AdminBundle\Entity\Offers $offer) {
+        $this->offer[] = $offer;
+
+        return $this;
+    }
+
+    /**
+     * Remove offer
+     *
+     * @param \TS\AdminBundle\Entity\Offers $offer
+     */
+    public function removeOffer(\TS\AdminBundle\Entity\Offers $offer) {
+        $this->offer->removeElement($offer);
+    }
+
+    /**
+     * Get offer
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOffer() {
+        return $this->offer;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Trace
+     */
+    public function setDate($date) {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate() {
+        return $this->date;
+    }
+
+    /**
+     * Set interview
+     *
+     * @param string $interview
+     * @return FeedBack
+     */
+    public function setInterview($interview) {
+        $this->interview = $interview;
+
+        return $this;
+    }
+
+    /**
+     * Get interview
+     *
+     * @return string 
+     */
+    public function getInterview() {
+        return $this->interview;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return FeedBack
+     */
+    public function setNote($note) {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string 
+     */
+    public function getNote() {
+        return $this->note;
+    }
+
+}

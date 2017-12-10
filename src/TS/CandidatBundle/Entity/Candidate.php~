@@ -1,0 +1,45 @@
+<?php
+
+namespace TS\CandidatBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Candidate
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TS\CandidatBundle\Entity\CandidateRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Candidate {
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\CandidatBundle\Entity\CandidatTests", cascade={"persist"})
+     */
+    private $CandidatTests;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+}

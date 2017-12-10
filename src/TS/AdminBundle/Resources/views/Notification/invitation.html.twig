@@ -1,0 +1,132 @@
+{# src\TS\AdminBundle\Resources\views\notifications\invitation.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" href="/TestTool/web/images/SungardLogo.png" type="image/vnd.microsoft.icon">
+        <title>
+            Sungard
+        </title>
+        <!--[if lt IE 9]>
+          <script src="{{ asset('assets/js/minified/core/html5shiv.min.js')}}"></script>
+          <script src="{{ asset('assets/js/minified/core/respond.min.js')}}"></script>
+        <![endif]-->
+        <!-- CSS Files -->
+        <!-- Fides Admin CSS Core -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/minified/aui-production.min.css')}}">
+        <!-- Theme UI -->
+        <link id="layout-theme" rel="stylesheet" type="text/css" href="{{ asset('assets/themes/minified/fides/color-schemes/dark-blue.min.css')}}">
+        <!-- Fides Admin Responsive -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/themes/minified/fides/common.min.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="../_assets/themes/fides/common.css"> -->
+        <link id="theme-animations" rel="stylesheet" type="text/css" href="{{ asset('assets/themes/minified/fides/animations.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/themes/minified/fides/responsive.min.css')}}">
+
+        <!-- JS Files-->
+        <script type="text/javascript" src="{{ asset('assets/js/minified/aui-production.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/minified/core/raphael.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/minified/widgets/charts-justgage.min.js')}}"></script>
+    </head>
+    <body >
+        <div class="row" style="margin: 10px;">
+            <form onsubmit="self.parent.tb_remove();" class="col-md-10 center-margin" method="post" href="#"  >
+
+                <div class="form-row mrg5T form-vertical">
+                    <div class="form-input col-md-2">
+                        <label >
+                            date test
+                        </label>
+                    </div>
+                    <div class="form-input col-md-10">
+                        <input required="required" type="text" id="datepicker2" name="date" />
+                    </div>
+                </div>
+
+                <div class="form-row mrg5T form-vertical">
+                    <div class="form-input col-md-2">
+                        <label >
+                            hour
+                        </label>
+                    </div>
+                    <div class="form-input bootstrap-timepicker dropdown col-md-10">
+                        <input required="required" style="width: 485%;" class="timepicker input" id="timepicker_24" name="hour" type="text">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-input col-md-2">
+                        <label for="">
+                            object
+                        </label>
+                    </div>
+                    <div  class="form-input col-md-10">
+                        <select required="required" id="choice" name="object" onchange="showSelect(this.value);">
+                            <option > </option>
+                            <option value="test" >test</option>
+                            <option value="Interview1" >Interview1</option>
+                            <option value="Interview2" >Interview2</option>
+                            <option value="Interview3" >Interview3</option>
+                            <option value="Other" >Other</option>
+                            <option value="OFF" >OFF</option>
+                            <option value="Recruit" >Recruit</option>
+                        </select>
+                    </div>
+                </div>
+                <div id ="tests" class="form-row" style="display:none">
+                    <div class="form-input col-md-2">
+                        <label for="">
+                            tests
+                        </label>
+                    </div>
+                    <div  class="form-input col-md-10" >
+                        <select id="testsSelect" name="tests[]" multiple class="chosen-select">
+                            <option></option>
+                            {% for test in allTests%}
+                            {% if testsOffer is not empty %}
+                            {% for element in testsOffer %}
+                                    {% if test.name is same as (element.name) %}
+                            <option selected value={{test.id}}  >
+                                    {% else %}
+                            <option  value={{test.id}}  >
+                                    {% endif %}
+                             {% endfor %}
+                                {% else %}
+                            <option  value={{test.id}}  >
+                            {% endif %}
+                                        {{test.name}}
+                            </option>
+
+                                {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="divider" ></div>
+                    <input type="hidden" name="superhidden" id="superhidden">
+                    <div class="col-md-4 col-md-offset-4">
+                        <input type="submit" value="SEND" name="submitAction" class="btn medium primary-bg radius-all-4" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function showSelect(_this) {
+                var div = document.getElementById("tests");
+                var select = document.getElementById("testsSelect");
+                if ((_this) === "test") {
+                    div.style.display = "block";
+                    select.required = TRUE;
+                }
+                else {
+                    div.style.display = "none";
+                    select.required = FALSE;
+                }
+            }
+        </script>
+    </body>
+</html>

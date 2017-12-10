@@ -1,0 +1,30 @@
+{# src/TS/CandidatBundle/Resources/views/Candidat/contact.html.twig #}
+
+{% extends "TSCandidatBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}|contact
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block menu_nav %}
+    <script>
+        $(document).ready(function() {
+            var li = document.getElementById('5');
+            $(li).addClass('selected');
+        });
+    </script>
+    {{parent()}}
+{% endblock %}
+{% block slider %}
+    {{ parent() }}
+{% endblock %}
+{% block mainbar%}
+    <div class="article">
+        <p>    <img src="/TestTool/web/images/website_under_construction.png" alt="" /> </p>
+    </div>
+    {{ parent() }}
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

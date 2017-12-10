@@ -1,0 +1,43 @@
+{# src\TS\AdminBundle\Resources\views\Admin\LineCharts.html.twig #}
+{% extends "TSAdminBundle::layout.html.twig" %}
+
+
+{% block title %}
+    {{ parent() }}|admin|CandidateStatics
+{% endblock %}
+
+{% block icons %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+ {% block sidebar %}
+{{ parent() }}
+{% endblock %}
+
+{% block right %}
+{{ parent() }}
+{% endblock %}
+
+
+{% block content%}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//code.highcharts.com/4.0.1/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.0.1/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+
+    </script>
+   
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>{# empty Twig template #}
+    {{ parent() }}
+{% endblock %}

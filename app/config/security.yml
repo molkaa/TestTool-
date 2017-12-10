@@ -1,0 +1,98 @@
+security:
+    encoders:
+        TS\UserBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_CANDIDATE, ROLE_EVALUATOR]
+        ROLE_SUPER_ADMIN: [ROLE_CANDIDATE, ROLE_EVALUATOR, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+         auth:
+            id: fos_user.user_provider.username
+         
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+  
+        admin_login:
+        # Cette expression régulière permet de prendre /login (mais pas /login_check !)
+            pattern:   ^/adminLogin$
+            anonymous: true
+            
+        employee_login:
+        # Cette expression régulière permet de prendre /login (mais pas /login_check !)
+            pattern:   ^/employeeLogin$
+            anonymous: true   
+
+       
+        admin:
+            pattern:  ^/admin
+            anonymous: true
+            form_login:
+                login_path: adminLogin
+                check_path: adminCheck
+            logout:
+                path:   adminLogout
+                target: /adminLogin
+            remember_me:
+                key:        %secret%
+              
+                
+        auth_Employee:
+            pattern:  ^/employee
+            anonymous: true
+            form_login:
+                login_path: employeeLogin
+                check_path: emplyeeCheck
+            logout:
+                path:   employeeLogout
+                target: /employeeLogin
+            remember_me:
+                key:        %secret%
+                
+                
+        auth_register:
+            pattern:   ^/register
+            anonymous: true # On autorise alors les anonymes sur ce pare-feu
+#        auth_profile:
+#            pattern:   ^/profile
+#            anonymous: true
+
+        auth_login:
+        # Cette expression régulière permet de prendre /login (mais pas /login_check !)
+            pattern:   ^/login$
+            anonymous: true # On autorise alors les anonymes sur ce pare-feu
+
+#        auth_quizlogin:
+#        # Cette expression régulière permet de prendre /loginQuiz (mais pas /loginQuiz_check !)
+#            pattern:   ^/loginQuiz$
+#            anonymous: true # On autorise alors les anonymes sur ce pare-feu
+
+#        authQuiz:
+#            pattern:   ^/quiz
+#            anonymous: false
+#            http_basic:
+#                realm: " Limited access "
+#            provider:  auth
+#            form_login:
+#                login_path: fos_user_security_quiz_login
+#                check_path: fos_user_security_quiz_check
+#                default_target_path: ts_admin_candidateTests
+#            logout:
+#                path: fos_user_security_quiz_logout
+#                target: /loginQuiz
+#            remember_me:
+#                key:        %secret%
+
+       
+
+
+            #anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+#      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+      - { path: ^/profile, role: ROLE_EVALUATOR }

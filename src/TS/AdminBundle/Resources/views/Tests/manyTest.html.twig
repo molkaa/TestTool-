@@ -1,0 +1,16 @@
+{# src/TS/AdminBundle/Resources/views/Tests/manyTest.html.twig #}
+
+
+<div class="form-row pad0B">
+
+    <div class="form-checkbox-radio col-md-12">
+        <div class="checkbox-radio disabled">
+            {% for response in question.responses %}
+                <input value="{{response.response}}" type="checkbox" name="{{question.id}}[]">
+                <label for="{{question.id}}">{{response.response}}</label>
+                <br/>
+            {%endfor %}
+        </div>
+    </div>
+</div>
+

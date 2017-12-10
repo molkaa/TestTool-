@@ -1,0 +1,76 @@
+{# src\TS\AdminBundle\Resources\views\users\addAdmin.html.twig #}
+
+{% extends "TSAdminBundle::layout.html.twig" %}
+
+
+{% block title %}
+ {{ parent() }}|admin|addAdmin
+{% endblock %}
+
+{% block icons %}
+  {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+
+ {% block sidebar%}
+{{ parent() }}
+{% endblock %}
+
+{% block right%}
+{{ parent() }}
+{% endblock %}
+
+{% block content%}
+ <div id="page-title"></div>
+<div class="row">
+     <div class="col-md-12">      
+
+           
+                <a class="btn medium primary-bg float-right"   href="#ModalAddSA" title="Add Super Admin" data-id  data-toggle="modal" data-placement="top" role="button">
+                    <span class="glyph-icon icon-separator">
+                        <i class="glyph-icon icon-plus-square"></i>
+                    </span>
+                    <span class="button-content">
+                        Add Super Admin
+                    </span>
+                </a>
+           
+
+
+        </div>
+    <br><br>
+
+<div class="col-md-12">
+    <div class="profile-box profile-box-alt content-box">
+        <div class="content-box-header clearfix primary-bg">
+            <div class="user-details">
+
+            </div>
+        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                {% for user in users %}
+                    {% include "TSAdminBundle:Users:showUser.html.twig" %}
+                {% endfor %}
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% include "TSAdminBundle:Users:ModalAddSA.html.twig" %}
+{{ parent() }}
+{% endblock %}

@@ -1,0 +1,28 @@
+div.details{
+    display: inline-block;
+    width: 100%;
+}
+/*.infopost {
+    width: 20%;
+    padding: 0 0 20px 0;
+}*/
+.post_content b {
+    padding : 20px;
+}
+div.titleDetails{
+    padding : 20px 20px 0 20px; 
+    font: normal 16px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
+}
+a {
+    color: #DA2525;
+}
+table td {
+    font: normal 14px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
+    
+}
+table{
+    width: 100%;
+}
+table tr{
+    width: 50%;
+}

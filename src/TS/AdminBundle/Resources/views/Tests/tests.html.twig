@@ -1,0 +1,155 @@
+{# src/TS/AdminBundle/Resources/views/Tests/Tests.html.twig #}
+{% extends "TSAdminBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}|admin|testLibrary
+{% endblock %}
+
+{% block icons %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+  
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar%}
+    {{ parent() }}
+{% endblock %}
+
+{% block right%}
+    {{ parent() }}
+{% endblock %}
+
+{% block content%}
+
+
+    <div id="page-title">
+
+
+        <div id="breadcrumb-right">
+
+            <div class="float-right">
+            </div>
+        </div>      
+
+    </div>
+
+
+
+
+    <div class="example-box">            
+        <div class="example-code"> 
+
+
+            <span> <h3><i class="glyph-icon icon-folder heading-content"> All Tests</i></h3>
+
+              
+                    <a class="btn medium primary-bg float-right"   href="#ModalAdd"  id="modalAddQuestion" title="Add Test" data-id  data-toggle="modal" data-placement="top" role="button">
+                        <span class="glyph-icon icon-separator">
+                            <i class="glyph-icon icon-plus-square"></i>
+                        </span>
+                        <span class="button-content">
+                            Add Test
+                        </span>
+                    </a>
+               
+            </span>
+
+
+
+            {% include "TSAdminBundle:Tests:ModalAddTest.html.twig"  %} 
+
+            <br><br><br>       
+
+
+
+
+            <table class="table" id="example1" >
+                <thead>
+                    <tr>
+                        <th>ID </th>
+                        <th>Type</th> 
+                        <th>Test</th>
+                        <th>Mark</th>
+                        <th>Elemenatory mark</th>
+                        <th>Time</th>
+                        <th>Calculation Method</th>
+                        <th>Preview</th>
+                        <th>Customize</th>
+                        <th>Settings</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody >
+
+                    {% for test in tests %}
+                        {% include "TSAdminBundle:Tests:test.html.twig"  %}
+
+                    {% endfor %}
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID </th>
+                        <th>Type</th> 
+                        <th>Test</th>
+                        <th>Mark</th>
+                        <th>Elemenatory mark</th>
+                        <th>Time</th>
+                        <th>Calculation Method</th>
+                        <th>Preview</th>
+                        <th>Customize</th>
+                        <th>Settings</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+
+                    </tr>
+                </tfoot>
+            </table>
+
+
+
+
+        </div>
+    </div>
+ {% include "TSAdminBundle:Notification:GrowlNotif.html.twig"  %}
+    {{ parent() }} 
+
+
+{% endblock %}      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

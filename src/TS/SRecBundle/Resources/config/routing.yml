@@ -1,0 +1,19 @@
+tss_rec_offers:
+    pattern:  /SRec/offers
+    defaults: { _controller: TSSRecBundle:SRec:offers }
+tss_rec_cvs:
+    pattern:  /SRec/cvs/{pages}
+    defaults: { _controller: TSSRecBundle:SRec:cvs, pages: 1  }
+    requirements:
+        page:  \d*
+tss_rec_cv:
+    pattern:  /SRec/cv/{pages}
+    defaults: { _controller: TSSRecBundle:SRec:cv, pages: 1  }
+    requirements:
+        page:  \d*
+tss_rec_edit:
+    pattern:  /SRec/edit
+    defaults: { _controller: TSSRecBundle:SRec:edit }
+tss_rec_tests:
+    pattern:  /SRec/tests
+    defaults: { _controller: TSSRecBundle:SRec:tests }

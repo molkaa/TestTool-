@@ -1,0 +1,89 @@
+<div  id="View{{test.id}}" class="modalTest hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">Test Id :{{test.id}}-{{test.type}}</p></h3>
+    </div>
+    <div class="modal-body">
+        <div class="content-box">
+            <div class="containerModal">
+                <div class="headingModal" >
+                    <div class="headingcolModal" >Question Id </div>                    
+                    <div class="headingcolModal" >Question </div>
+                    <div class="headingcolModal"  >Response </div>
+                    <div class="headingcolModal"> Mark</div>
+                </div>      
+                {%if test.questions|length==0%}
+                    <div class="table-rowModal">
+                        <div class="font-bold text-left" >No Questions found</div>
+
+                    {%endif%}
+                    {% for question  in test.questions%}
+                        <div class="table-rowModal">
+                            <div class="colModal font-bold text-center" style="width: 80px" >{{question.id}}</div>
+                            <div class="colModal" style="width: 200px"> 
+                                <label for="edit{{question.id}}"> 
+                                    <b class="font-bold text-left" id="editTestText{{question.id}}"></b>
+                                    <script type = "text/javascript">
+                                        $('b#editTestText{{question.id}}').append({{question.text|json_encode|raw}});
+                                    </script>
+
+                                </label></div>
+                            <div class="colModal" style="width: 600px"><div id="moreTestQuestion{{question.id}}#" style="display: block;">
+                                    {% if question.type == ('one') %}
+                                        {% include "TSAdminBundle:Tests:oneTest.html.twig" %}
+                                    {% elseif question.type == ('many') %}
+                                        {% include "TSAdminBundle:Tests:manyTest.html.twig" %}
+                                    {% elseif question.type == ('menu') %}
+                                        {% include "TSAdminBundle:Tests:menuTest.html.twig" %}
+                                    {% elseif question.type == ('numeric') %}
+                                        {% include "TSAdminBundle:Tests:numericTest.html.twig" %}
+                                    {% elseif question.type == ('free') %}
+                                        {% include "TSAdminBundle:Tests:freeTest.html.twig" %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="colModal" style="width: 50px">  <div class="label primary-bg">{{question.note}}</div></div>
+
+                        </div>
+                    {% endfor %}                                 
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div> 
+        </div>
+
+
+
+
+
+
+
+
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+

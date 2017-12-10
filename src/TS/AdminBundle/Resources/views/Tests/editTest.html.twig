@@ -1,0 +1,104 @@
+{# src/TS/AdminBundle/Resources/views/Tests/editQuestion.html.twig #}
+<form class="left-side" action="{{ path('ts_admin_editTest')}}?id={{id}}"  method="post"{{ form_enctype(form) }}>
+
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">Edit Test  : </h3>
+    </div>
+    <div class="modal-body">
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div  id="big-box#" class="content-box box-toggle">
+
+                    <div  class="content-box-wrapper">
+
+                        <div class="form-row">
+                            <div class="form-input col-md-2 hidden">
+                                <label for="">
+                                    {{ form_label(form.name) }}
+                                    <span class="required" style="color:red">*</span>
+                                </label>
+                            </div>
+                            <div class="form-input col-md-10 hidden" >
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-input col-md-2 ">
+                                {{ form_label(form.note) }}
+                                <span class="required" style="color:red">*</span>
+                            </div>
+                            <div class="form-input col-md-4 ">
+                                {{ form_widget(form.note) }}
+                            </div>
+                            <div class="form-input col-md-2">
+                                {{ form_label(form.eliminatoryNote) }}
+                                <span class="required" style="color:red">*</span>
+                            </div>
+                            <div class="form-input col-md-4">
+                                {{ form_widget(form.eliminatoryNote) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-input col-md-2">
+                                <label for="">
+                                    {{ form_label(form.time) }}(in minutes)
+                                    <span class="required" style="color:red">*</span>
+                                </label>
+                            </div>
+                            <div class="form-input col-md-10" >
+                                {{ form_widget(form.time) }}
+                            </div>
+                        </div>  
+                        
+                            <div class="form-row">
+                                  <div class="form-input col-md-2">
+                                      
+                                        {{ form_label(form.calculationMethod) }}
+                                        <span class="required" style="color:red">*</span>
+                                     
+                                    </div>
+                                    <div class="form-input col-md-10" >
+                                        {{ form_widget(form.calculationMethod) }}
+                                    </div>   
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <div class="modal-footer">
+        <div class="col-md-1 float-right">
+            <input type="submit" value="Edit" name="submitAction" class="btn medium primary-bg" />
+
+        </div>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+
+
+
+
+
+
+    </div>
+    {{ form_rest(form) }}
+    {% include "TSAdminBundle:Tests:formulaire.html.twig"  %}
+
+</form>
+

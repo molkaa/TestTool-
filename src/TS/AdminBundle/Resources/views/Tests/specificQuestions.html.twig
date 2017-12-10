@@ -1,0 +1,84 @@
+{# src/TS/AdminBundle/Resources/views/Tests/specificQuestions.html.twig #}
+{% extends "TSAdminBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}|admin|questions
+{% endblock %}
+
+{% block icons %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/popup/thickbox-compressed.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/thickbox.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/jquery-ui-1.10.3.custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/jquery-ui-1.10.3.custom.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/jquery-1.8.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/jquery.ba-resize.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/jquery-1.9.1.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup/popup.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/ckeditor/config.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/ckeditor/contents.css') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/ckeditor/styles.js') }}"></script>
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar%}
+    {{ parent() }}
+{% endblock %}
+
+{% block right%}
+    {{ parent() }}
+{% endblock %}
+
+{% block content%}
+
+<div class="row">
+        {% include "TSAdminBundle:Tests:researchQuestions.html.twig" %}
+</div>
+<div class="row">
+        {% include "TSAdminBundle:Tests:addQuestion.html.twig"  %}
+</div>
+<div class="row" id="container">
+        {% for question in questions %}
+            {% include "TSAdminBundle:Tests:question.html.twig"  %}
+        {% endfor %}
+</div>
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="button-group float-left">
+                {% if nombrePage == 0 %} 
+            No questions
+                {% else %} 
+            <a href="javascript:;" class="btn large float-left mrg5R ui-state-default">
+                <i class="glyph-icon icon-arrow-left"></i>
+            </a>
+                    {% for p in range(1, nombrePage) %}
+            <a {% if p == page %} 
+                class="btn disabled large primary-bg"
+                            {% endif %} 
+                class="btn large primary-bg" href="{{ path('ts_admin_question', {'page': p}) }}">
+                                {{p}}
+            </a>
+                            {% endfor %}
+            <a href="javascript:;" class="btn large float-left mrg5L ui-state-default">
+                <i class="glyph-icon icon-arrow-right"></i>
+            </a>
+                                {% endif %}
+        </div>
+
+    </div>
+</div>
+{{ parent() }}
+{% endblock %}                       

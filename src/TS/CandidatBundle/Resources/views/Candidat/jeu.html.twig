@@ -1,0 +1,60 @@
+{# src/TS/CandidatBundle/Resources/views/Candidat/htapply.html.twig #}
+
+
+
+    <form method="post" {{ form_enctype(form) }}>
+        {% block field_label %}
+    {% spaceless %}
+        <div>
+            <input id="ac-0" name="accordion-1" type="radio" checked />
+            <label class="newLabel" >How to apply</label>
+        </div>
+        <div>
+            <input id="ac-1" name="accordion-1" type="radio" checked />
+            <label class="newLabel" for="ac-1">Personal Details*</label>
+            <article class="well personal" >
+                <div id="personalDetails">
+{#                    and child!=form.professionalExperiences#}
+{#                    child!=form.academicDetails and#}
+                    {% for child in form %}
+{#                        {% if ( child!=form.academicDetails  and child!=form.professionalExperiences )%}#}
+                            {{ form_row(child) }}
+{#                        {% endif %}#}
+                    {% endfor %}
+                </div>
+            </article>  
+        </div>
+        <div>
+            <input id="ac-2" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-2">Academic Details*</label>
+            <article class="well academic" >
+{#                 {{ form_row (form.academicDetails) }}#}
+            </article>
+        </div>
+        <div>
+            <input id="ac-3" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-3">Professional Eperience</label>
+            <article class="well academic" >
+{#                 {{ form_row(form.professionalExperiences) }}#}
+            </article>
+        </div>
+        <div>
+            <input id="ac-4" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-4">Technologies*</label>
+            <article class="ac-large">
+                <p>You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die down here. Just as a matter of deductive logic. </p>
+            </article>
+        </div>
+        <div>
+            <input id="ac-5" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-5">Languages*</label>
+            <article class="ac-large">
+                <p>You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die down here. Just as a matter of deductive logic. </p>
+            </article>
+        </div>
+        <input type="submit"class="btn btn-primary" />
+        {% include "TSCandidatBundle:Candidat:test.html.twig"  %}
+        {% endspaceless %}
+
+    {% endblock field_label %}
+    </form>

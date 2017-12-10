@@ -1,0 +1,227 @@
+{# src/TS/EvaluatorBundle/Resources/views/Candidat/CandidateTest.html.twig #}
+{% extends "TSAdminBundle:Candidate:candidatTests.html.twig" %}
+
+{% block sidebar %}
+    {#--300,95---#}
+   
+    <script src="/TestTool/web/js/jquery.hotkeys.js"></script>   
+    <script type="text/javascript" src="/TestTool/web/js/TimeCircles.js" ></script>
+    <script>var tab=new Array();</script>
+    
+    
+    <link  href="/TestTool/web/css/TimeCircles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/TestTool/web/css/zibra/zebra_dialog.css" type="text/css">
+    
+      {#----save the time of the countdown in the Cookies---------- #}
+      
+      {%set  tempCookies = app.request.cookies.get('tempQuiz'~candidat.username~test.id) %}
+      {% if tempCookies == 0 %}
+            {%set  tempTest = test.time * 60 %}
+      {% elseif tempCookies != 0 %}
+            {%set  tempTest = tempCookies %}
+      {% endif %}
+      {#--------------------------------------------------------------#}
+      
+    <div id="CountDownTimer" data-timer="{{tempTest}}" style="width: 250px; height: 65px;" ></div> 
+    
+    
+    <div class="infobox info-bg" style="margin-top: 200px">
+        Questions : <br><br>
+      {% for question in questions  %} 
+          {% if loop.index <10 %}
+              <a href="#questionone{{question.id}}" >   <span id="badge{{question.id}}"  class="badge bg-red tooltip-button">Q0{{loop.index}}</span></a>
+           {% else %}
+               <a href="#questionone{{question.id}}" >   <span id="badge{{question.id}}"  class="badge bg-red tooltip-button">Q{{loop.index}}</span></a>
+                {%endif%}
+          {% endfor %}
+
+    <br><br>
+    
+    <span class="badge bg-red tooltip-button" >Q*</span>  <label class="font-gray-dark" for="">Question unanswered</label>
+    <span class="badge bg-yellow tooltip-button" >Q*</span>  <label class="font-gray-dark" for="">Question to review</label>
+    <span class="badge primary-bg tooltip-button" >Q*</span>  <label class="font-gray-dark" for="">Question answered</label>
+    
+    </div>
+{% endblock %}
+
+
+
+{% block content %}
+    
+
+  {#---------------------------------------------------------#}
+<div id="blockTest" class="row ">
+            
+        <div class="col-md-12" style="margin-top:0px" >
+            <div class="content-box border-top border-bottom border-blue mrg25B col-md-11 center-margin">
+                <h3 class="content-header">
+                    <span> <b> {{test.name}} </b></span>
+                </h3>
+                <div class="content-box-wrapper">
+                    <form class="col-md-10 center-margin" method="post" id='myform' >
+                       
+                       <input type="text" value="0" id="tempquiz" name="tempquiz" hidden/>
+                        {% for question in questions %}
+                            
+                            {% if question.type == ('one') %}
+                               
+                                {% include "TSAdminBundle:Candidate:oneTest.html.twig" %}
+                                
+                            {% elseif question.type == ('many') %}
+                                {% include "TSAdminBundle:Candidate:manyTest.html.twig" %}
+                            {% elseif question.type == ('menu') %}
+                                {% include "TSAdminBundle:Candidate:menuTest.html.twig" %}
+                            {% elseif question.type == ('numeric') %}
+                                {% include "TSAdminBundle:Candidate:numericTest.html.twig" %}
+                            {% elseif question.type == ('free') %}
+                                {% include "TSAdminBundle:Candidate:freeTest.html.twig" %}
+                            {% endif %}
+                        
+                            {% endfor %}
+                      
+                         
+                        
+                                <input type="hidden" name="superhidden" id="superhidden">
+                                <div class="col-md-4 col-md-offset-4">
+                                     <input type="button" class="btn medium primary-bg radius-all-4" onclick="javascript:void(0)" value="validate" id="example31" /> 
+                                </div>
+                                
+                                
+                    </form>
+                           
+                </div>
+            </div>
+        </div>
+    
+         
+    </div>
+              {# script Count Down Timer #}
+ 	
+       <script>
+            $("#CountDownTimer").TimeCircles({ 
+                time: { Days: { show: false }, Hours: { show: true, color: "#0A4579" } ,Minutes: {show: true, text: "Minutes",color: "#0256D5" } ,Seconds: {show: true,text: "Seconds",color: "#0E0102"}
+},
+                count_past_zero: false,
+                text_size: 0.1,
+                circle_bg_color: "#C0C3C6"
+               
+               
+                
+            });
+            
+           
+            $("#CountDownTimer").TimeCircles().addListener(function(unit,value,total){
+                  
+                $.cookie('tempQuiz'+nomTest, total);
+              
+                
+              /*  if(total=== 10 ||total=== 9 ||total=== 8 ||total=== 7 ||total=== 6 ||total=== 5 ||total=== 4 ||total=== 3 || total=== 2 || total=== 1 ){
+                    $("#CountDownTimer").TimeCircles({
+                       
+                       "circle_bg_color": "#cd2323" 
+                       
+                   });
+                   
+                 
+               } */
+               
+               //else
+              
+                   if (total === 0 )
+               {
+                
+                 document.getElementById('tempquiz').value = '1';
+                
+                 document.forms["myform"].submit();
+                 
+                  
+                 
+               }
+               
+               
+               
+               
+               
+              
+                   
+        });
+                 
+            
+ 
+    
+        </script> 
+       <script type="text/javascript" src="/TestTool/web/js/zibra/zebra_dialog.js"></script>
+        <script type="text/javascript" src="/TestTool/web/js/zibra/main.js"></script>
+         <script type="text/javascript" src="/TestTool/web/js/disablekey.js"></script>
+      
+        
+       
+       <script>
+          var moins =0
+          var plus = 0;
+           function tickMoins()
+             {
+               moins = moins + 1;
+             }
+           function tickPlus()
+             {
+               plus = plus + 1;
+             } 
+           function tickResult()
+           {
+              var res = plus - moins;
+              return res;
+           }
+           function affichertab(tab)
+           {
+               alert(''+tab);
+           }
+           
+           
+           function cleanArray(tab) {
+            var tab2=tab;
+            var i, j, len = tab2.length, out = [], obj = {};
+            for (i = 0; i < len; i++) {
+                 obj[tab2[i]] = 0;
+                }
+            for (j in obj) {
+                     out.push(j);
+                }
+            return out;
+        }
+        
+        function verifresponse()
+           {
+              {%if(test.Customized) is sameas("no")%} 
+               var nbr_questions =  {{test.questions|length|json_encode()|raw }} 
+              {%else%} 
+                 var nbr_questions ={{test.TestStatestics.numberQuestions|json_encode()|raw}} 
+              {%endif%} 
+               var nbr_question_answered = cleanArray(tab);
+              
+               var nbr_answered=0;
+               if(nbr_question_answered.length == nbr_questions )
+               {
+                   nbr_answered=0;
+                   
+               }
+               else
+               {
+                    nbr_answered=1;
+               }
+               return nbr_answered;
+                  
+           }
+           
+        
+
+        
+             var nomTest={{ candidat.username|json_encode()|raw  }}+{{ test.id|json_encode()|raw }};
+             
+             
+            
+       
+</script>
+         
+{% endblock %}

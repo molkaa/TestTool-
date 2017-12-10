@@ -1,0 +1,37 @@
+<script>
+                            
+                            //success
+                            $(function () {
+                            {% for flashMessage in app.session.flashbag.get('notice') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type', 'success');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+                            
+                            
+                            //warnning
+                             $(function () {
+                            {% for flashMessage in app.session.flashbag.get('warnning') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type','danger');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+
+
+                        </script>

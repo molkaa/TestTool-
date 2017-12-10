@@ -1,0 +1,7 @@
+parameters:
+#    tss_rec.example.class: TS\SRecBundle\Example
+
+services:
+#    tss_rec.example:
+#        class: %tss_rec.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,49 @@
+{# src/TS/CandidatBundle/Resources/views/Candidat/home.html.twig #}
+
+{% extends "TSCandidatBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }}|home
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block menu_nav %}
+    <script>
+        $(document).ready(function() {
+            var li = document.getElementById('1');
+            $(li).addClass('selected');
+        });
+    </script>
+    {{ parent() }}
+{% endblock %}
+{% block slider %}
+    {{ parent() }}
+{% endblock %}
+{% block mainbar%}
+    <div class="article">
+        <div class="text_home">
+            SunGard is one of the world’s leading software and technology services companies. 
+            Our four businesses serve approximately 25,000 customers in more than 70 countries:
+        </div>
+
+        <p style="margin: 30px"> 
+            FINANCIAL SYSTEMS:<br>
+            We take very seriously our mission to continually improve the software that underpins the world's financial systems. The world's leading financial institutions rely on us.
+        </p>
+        <p style="margin: 30px"> 
+            K-12 EDUCATION:<br>
+            SunGard K-12 Education software solutions currently support over 8 million K-12 students in the United States.
+        </p>
+        <p style="margin: 30px"> 
+            PUBLIC SECTOR:<br>
+            We help government agencies, including public safety and justice, utilities and non-profits, provide more effective services to their citizens and communities.
+        </p>
+        <div class="clr"></div>
+
+    </div>
+    {{parent()}}
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

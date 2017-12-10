@@ -1,0 +1,58 @@
+<div style="display:none">
+    <div id="content{{question.id}}">
+        <table class="table " id="read-box{{question.id}}#" style="display:block">
+            <tbody>
+                <tr>
+                    <td class="font-bold">response</td>
+                    <td class="font-bold">value</td>
+                    <td class="font-bold">note</td>
+                    <td class="font-bold">type</td>
+                </tr>
+                 
+                    {% for response in question.responses %}
+                        <tr>
+                            <td>{{response.response}}</td>
+                            {% if response.value is not null %}
+                                <td class="font-bold">{{response.value}}</td>
+                            {%else%}
+                                <td class="font-bold">
+                                    <i class="glyph-icon icon-clock-os"></i>
+                                </td>
+                            {% endif %}
+                            <td><div class="label primary-bg">{{response.note}}</div></td>
+
+                            <td class="text-right">
+                                {% if question.type is same as ('one')%}
+                                    <input disabled="" type="radio"
+                                           {% if response.note >= 0 %}
+                                               checked=""
+                                           {% endif %}
+                                           />
+                                {% elseif question.type is same as ('many') %}
+                                    <input disabled="" type="checkbox"
+                                           {% if response.note >= 0 %}
+                                               checked=""
+                                           {% endif %}
+                                           />    
+                                {% elseif question.type is same as ('menu') %}
+                                    <select id="" multiple="" name="" disabled="">
+                                        <option>{{response.response}}</option>
+                                    </select>
+                                {% elseif question.type is same as ('numeric') %}
+                                    <input placeholder="{{response.value}}" disabled="">
+                                {%elseif question.type is same as ('free') %}
+                                    <textarea name="" id="" class="col-md-8" disabled=""></textarea>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                
+            </tbody>
+        </table>
+        <div class="popModal_footer">
+            <button type="button" class="btn medium primary-bg" data-popmodal-but="ok">ok</button>
+
+        </div>
+    </div>
+</div>   

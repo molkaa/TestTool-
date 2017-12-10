@@ -1,0 +1,227 @@
+<?php
+
+namespace TS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Recomandation
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TS\AdminBundle\Entity\RecomandationRepository")
+ */
+class Recomandation {
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\CandidatBundle\Entity\Candidate", cascade={"persist"})
+     */
+    private $candidates;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\AdminBundle\Entity\Evaluator", cascade={"persist"})
+     */
+    private $evaluators;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="offer", type="text")
+     */
+    private $offer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=50)
+     */
+    private $state;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        
+        $this->date = new \DateTime();
+        $this->candidates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->evaluators = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Recomandation
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     * Add candidates
+     *
+     * @param \TS\CandidatBundle\Entity\Candidate $candidates
+     * @return Recomandation
+     */
+    public function addCandidate(\TS\CandidatBundle\Entity\Candidate $candidates) {
+        $this->candidates[] = $candidates;
+
+        return $this;
+    }
+
+    /**
+     * Remove candidates
+     *
+     * @param \TS\CandidatBundle\Entity\Candidate $candidates
+     */
+    public function removeCandidate(\TS\CandidatBundle\Entity\Candidate $candidates) {
+        $this->candidates->removeElement($candidates);
+    }
+
+    /**
+     * Get candidates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCandidates() {
+        return $this->candidates;
+    }
+
+    /**
+     * Add evaluators
+     *
+     * @param \TS\AdminBundle\Entity\Evaluator $evaluators
+     * @return Recomandation
+     */
+    public function addEvaluator(\TS\AdminBundle\Entity\Evaluator $evaluators) {
+        $this->evaluators[] = $evaluators;
+
+        return $this;
+    }
+
+    /**
+     * Remove evaluators
+     *
+     * @param \TS\AdminBundle\Entity\Evaluator $evaluators
+     */
+    public function removeEvaluator(\TS\AdminBundle\Entity\Evaluator $evaluators) {
+        $this->evaluators->removeElement($evaluators);
+    }
+
+    /**
+     * Get evaluators
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvaluators() {
+        return $this->evaluators;
+    }
+
+    /**
+     * Set offer
+     *
+     * @param string $offer
+     * @return Recomandation
+     */
+    public function setOffer($offer) {
+        $this->offer = $offer;
+
+        return $this;
+    }
+
+    /**
+     * Get offer
+     *
+     * @return string 
+     */
+    public function getOffer() {
+        return $this->offer;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     * @return Recomandation
+     */
+    public function setState($state) {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string 
+     */
+    public function getState() {
+        return $this->state;
+    }
+
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Recomandation
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+}

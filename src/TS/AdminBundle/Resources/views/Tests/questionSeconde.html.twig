@@ -1,0 +1,144 @@
+{# src/TS/EvaluatorBundle/Resources/views/Tests/question.html.twig #}
+
+
+<div class="row ">
+    <div class="col-md-12">
+        <div class="content-box border-top border-bottom border-blue mrg25B col-md-11 center-margin">
+            <h3 class="content-header">
+                <div class="button-group float-right bg-gray" data-toggle="buttons">
+                    {% if  app.session.get('role') is same as ('RH') %}
+                    <a  id="edit-box{{question.id}}" class="btn medium bg-gray"  onclick="changeEditElement(this);" title="Edit">
+                        <input type="radio" >
+                        <i class="glyph-icon icon-edit"></i>
+                    </a>
+                    {% endif %}
+                    <a id="read-box{{question.id}}" onclick="changeReadElement(this);" class="btn medium bg-gray" title="Responses">
+                        <input type="radio" >
+                        <i class="glyph-icon icon-angle-double-right"></i>
+                    </a>
+                    {% if  app.session.get('role') is same as ('RH') %}
+                    <a id="remove{{question.id}}" onclick="changeRemoveQuestion(this);" class="btn small hover-red tooltip-button" data-placement="top" title="" data-original-title="Remove">
+                        <i class="glyph-icon icon-trash-o"></i>
+                    </a>
+                    {% endif %}
+                </div>
+                {% if question.introduction is not null %}
+                    <b id="introduction{{question.id}}"> </b> 
+                {% endif %}
+                <div id="text{{question.id}}"> </div>
+            </h3>
+            <div class="content-box-wrapper">
+                {% if question.questionPicture is not null %}
+                    <img width="250" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+                {% endif %}
+                <div class="col-md-6 float-none center-margin" id="read-box{{question.id}}#" style="display:none">
+                    <div class="content-box">
+                        <table class="table text-center">
+                            <tbody>
+                                <tr>
+                                    <td class="font-bold">response</td>
+                                    <td class="font-bold">value</td>
+                                    <td class="font-bold">note</td>
+                                    <td class="font-bold">type</td>
+                                </tr>
+                                {% if question.type is same as ('free')  %}
+                                    <tr>
+                                        <td ><textarea name="" id="" class="col-md-8" disabled=""></textarea></td>
+                                    </tr>
+                                {%else%}    
+                                    {% for response in question.responses %}
+                                        <tr>
+                                            <td>{{response.response}}</td>
+                                            {% if response.value is not null %}
+                                                <td class="font-bold">{{response.value}}</td>
+                                            {%else%}
+                                                <td class="font-bold">
+                                                    <i class="glyph-icon icon-clock-os"></i>
+                                                </td>
+                                            {% endif %}
+                                            <td><div class="label bg-red">{{response.note}}</div></td>
+
+                                            <td class="text-right">
+                                                {% if question.type is same as ('one')%}
+                                                    <input disabled="" type="radio"
+                                                           {% if response.note >= 0 %}
+                                                               checked=""
+                                                           {% endif %}
+                                                           />
+                                                {% elseif question.type is same as ('many') %}
+                                                    <input disabled="" type="radio"
+                                                           {% if response.note >= 0 %}
+                                                               checked=""
+                                                           {% endif %}
+                                                           />    
+                                                {% elseif question.type is same as ('menu') %}
+                                                    <select id="" multiple="" name="" disabled="">
+                                                        <option>{{response.response}}</option>
+                                                    </select>
+                                                {% elseif question.type is same as ('numeric') %}
+                                                    <input placeholder="{{response.value}}" disabled="">
+                                                {% endif %}
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if  app.session.get('role') is same as ('RH') %}
+{#////*********************************** edit page ********************************#}
+<div class="row" id="edit-box{{question.id}}#" style="display:none">
+    {{ render(controller('TSAdminBundle:Tests:selectEditQuestion', {'id':question.id} )) }}
+</div>
+{#////*********************************** remove page ********************************#}
+<div class="row col-md-12 text-center" id="remove{{question.id}}#" style="display:none">
+    {{ render(controller('TSAdminBundle:Tests:selectRemoveQuestion',  {'id':question.id} )) }}
+</div>
+{% endif %}
+{#////*********************************** Change element Script  ********************************#}
+
+<script type = "text/javascript">
+    $('b#introduction{{question.id}}').append({{ question.introduction|json_encode|raw}});
+    $('div#text{{question.id}}').append({{ question.text|json_encode|raw}});
+    function changeEditElement(_this)
+    {
+        var div = document.getElementById(_this.id + '#');
+
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        }
+        else {
+            div.style.display = "none";
+        }
+    }
+    function changeRemoveQuestion(_this)
+    {
+        var div = document.getElementById(_this.id + '#');
+
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        }
+        else {
+            div.style.display = "none";
+        }
+    }
+
+    function changeReadElement(_this)
+    {
+        var div = document.getElementById(_this.id + '#');
+
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        }
+        else {
+            div.style.display = "none";
+        }
+    }
+
+</script>

@@ -1,0 +1,15 @@
+{# src/TS/AdminBundle/Resources/views/Tests/menuTest.html.twig #}
+
+
+
+<div class="form-row pad0B">
+    <div class="form-input col-md-6">
+        <select  multiple name="{{question.id}}[]" class="chosen-select disabled">
+            <option> </option>
+            {%for response in question.responses%}
+                <option value="{{response.response}}">{{response.response}}</option>
+            {%endfor %}
+        </select>
+    </div>
+</div>
+<br/>

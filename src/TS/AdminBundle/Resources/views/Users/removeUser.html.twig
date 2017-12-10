@@ -1,0 +1,42 @@
+{# src/TS/AdminBundle/Resources/views/Users/removeUser.html.twig #}
+
+<div class="row">
+    <div class="col-md-11 center-margin" style="margin-right: 0;">
+        <div class="content-box box-toggle">
+            <h3 style="height: 20px;" class="content-box-header ui-state-default">
+                <span class="float-left">Remove this user</span>
+                <i id="remove-user{{id}}" onclick="changeRemoveUser(this);" class="glyph-icon icon-clock-os float-right" style="margin-right: 10px;color:#d60000;"></i>
+            </h3>
+            <div  class="content-box-wrapper">
+
+                <form class="col-md-10 center-margin" action="{{path('ts_admin_removeUser')}}?id={{id}}&role={{role}}"  method="post"{{ form_enctype(form) }}>                
+{#                    //*********************************************#}
+                    <p>
+                        Are you sure you want to remove this user ?
+                    </p>
+{#                    //*********************************************#}
+                    {{ form_rest(form) }}
+                    <div class="form-row">
+                        <div class="divider" ></div>
+                        <div class="col-md-2 col-md-offset-5">
+                            <input type="submit" value="Remove" style="background: #d60000"class="btn medium primary-bg radius-all-4" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function changeRemoveUser(_this)
+    {
+        var div = document.getElementById(_this.id + '#');
+
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        }
+        else {
+            div.style.display = "none";
+        }
+    }
+</script>

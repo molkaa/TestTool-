@@ -1,0 +1,377 @@
+{% extends "TSAdminBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}|admin|questions
+{% endblock %}
+
+{% block icons %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript" src="{{ asset('js/popup/thickbox-compressed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/popup/thickbox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/popup/popup.js') }}"></script>
+    
+    
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/config.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/contents.css') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/styles.js') }}"></script>
+
+
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar%}
+    {{ parent() }}
+{% endblock %}
+
+{% block right%}
+    {{ parent() }}
+{% endblock %}
+
+
+
+
+
+
+{%block content%}
+
+
+    <div id="page-title">
+
+
+        <div id="breadcrumb-right">
+
+            <div class="float-right">
+            </div>
+        </div>      
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="example-box">            
+        <div class="example-code">      
+
+
+            <span> <h3><i class="glyph-icon icon-folder heading-content"> All Questions</i></h3>
+
+
+                {% if  app.session.get('role') is same as ('RH') %}
+                    <div class="dropdown float-right" >
+                        <a href="javascript:;" class="btn medium primary-bg" data-toggle="dropdown">
+                            <span class="glyph-icon icon-separator">
+                                <i class="glyph-icon icon-plus-square"></i>
+                            </span>
+                            <span class="button-content">
+                                Add Question
+                            </span>
+                            <span class="glyph-icon icon-separator float-right">
+                                <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                            </span>
+                        </a>
+
+                        <ul class="dropdown-menu float-right">
+
+                            <li>
+                                <a title="" href="#ModalAdd"  id="modalAddQuestion" title="Add Question" data-id  data-toggle="modal" data-placement="top" role="button" onclick="UpdateTypeQuestion('one')">
+
+                                    <i class="glyph-icon icon-dot-circle-o"></i>
+                                    Multiple Choice
+                                </a>
+                            </li>
+                            <li>
+                                <a title="" href="#ModalAdd" id="modalAddQuestion"  title="Add Question"  data-toggle="modal" data-placement="top" role="button" onclick="UpdateTypeQuestion('many')">
+                                    <i class="glyph-icon icon-check-square-o mrg5R"></i>
+                                    Checkboxes
+                                </a>
+                            </li>
+                            <li>
+                                <a title="" href="#ModalAdd" id="modalAddQuestion" title="Add Question"  data-toggle="modal" data-placement="top" role="button" onclick="UpdateTypeQuestion('free')">
+                                    <i class="glyph-icon icon-pencil-square-o mrg5R"></i>
+                                    Essay
+                                </a>
+                            </li>
+                            <li>
+                                <a title="" href="#ModalAdd" id="modalAddQuestion" title="Add Question"  data-toggle="modal" data-placement="top" role="button" onclick="UpdateTypeQuestion('numeric')">
+                                    <i class="glyph-icon icon-arrows-alt mrg5R"></i>
+                                    Numeric
+                                </a>
+                            </li>
+                            <li>
+                                <a title="" href="#ModalAdd" id="modalAddQuestion" title="Add Question"  data-toggle="modal" data-placement="top" role="button" onclick="UpdateTypeQuestion('menu')">
+                                    <i class="glyph-icon icon-caret-square-o-down mrg5R"></i>
+                                    Drop down
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {%else%}
+
+                   
+                {% endif %}
+
+
+            </span>
+
+
+
+
+
+
+            {#--------------------------Modal Add Question--------------------------------------#}
+
+
+
+            <div  id="ModalAdd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <form class="left-side" method="post"{{ form_enctype(form) }}>
+
+
+                    <div class="modal-header">
+                        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                            <i class="glyph-icon icon-remove"></i>
+                        </a>
+
+                        <h3 id="myModalLabel">Add Question </h3>
+                    </div>
+                    <div class="modal-body">
+                        <input type="radio" class="hidden" id="typeQ"  name="type" value="" checked="true">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="big-box#" class="content-box box-toggle content-box-wrapper">
+                                    <div  class="content-box-wrapper">
+
+
+                                        <div class="form-row">
+                                            <div class="form-input col-md-2">
+                                                <label for="">
+                                                    {{ form_label(form.introduction) }}
+                                                </label>
+                                            </div>
+                                            <div class="form-input col-md-10 clearfix" cols="80" id="editor1" name="editor1" rows="10">
+                                                {{ form_widget(form.introduction, { 'attr': {'class': 'ckeditor'} }) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-input col-md-2">
+                                                <label for="">
+                                                    {{ form_label(form.text) }}
+                                                    <span class="required" style="color:red">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="form-input col-md-10 clearfix" cols="80" rows="10">
+                                                {{ form_widget(form.text, { 'attr': {'class': 'ckeditor'} }) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-input col-md-2">
+                                                {{ form_label(form.note) }}
+                                                <span class="required" style="color:red">*</span>
+                                            </div>
+                                            <div class="form-input col-md-2">
+                                                {{ form_widget(form.note,{ 'attr': {'class': 'spinner-input'} }) }}
+                                            </div>
+                                            <div class="form-input col-md-1">
+                                                {{ form_label(form.questionPicture) }}
+                                            </div>
+                                            <div class="form-input col-md-3">
+                                                {{ form_widget(form.questionPicture.file,{'attr':{'accept':'.png,.jpeg,.jpg'}}) }}
+                                            </div>
+                                            <div class="form-input col-md-1">
+                                                tests
+                                                <span class="required" style="color:red">*</span>
+                                            </div>
+                                            <div class="form-input col-md-3" >
+                                                <select id="testsSelect" name="test" class="chosen-select">
+                                                
+                                                    {% for test in tests%}
+                                                        <option  value={{test.name}}  >
+                                                            {{test.name}}
+                                                        </option>
+
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                         <div class="form-row">
+                                      <div class="form-input col-md-2">
+
+                                            {{ form_label(form.questionLevel) }}
+                                            <span class="required" style="color:red">*</span>
+
+                                        </div>
+                                    <div class="form-input col-md-10" >
+                                        {{ form_widget(form.questionLevel) }}
+                                    </div>   
+                            </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="form-input col-md-2">
+                                                <label for="">
+                                                    {{ form_label(form.responses) }}
+                                                    <span class="required" style="color:red" >*</span>
+                                                </label>
+                                            </div>
+                                            <div class="form-input col-md-10">
+                                                {{ form_widget(form.responses) }}
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+
+
+                        <div class="col-md-1 float-right" >
+
+                            <input type="hidden" name="superhidden" id="superhidden">
+                            <input  type="submit" value="ADD" name="submitAction" class=" btn medium primary-bg" />
+                        </div>
+
+                        <button type="button" data-dismiss="modal" aria-hidden="true" class=" btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+                    </div>
+                    {{ form_rest(form) }}
+                    {% include "TSAdminBundle:Tests:formulaireLibrary.html.twig"  %}
+                </form>
+            </div>
+
+
+
+
+
+
+            {#---------------------------------fin Modal ---------------------------------#}       
+            <br><br><br>       
+
+
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID </th>
+                        <th>Type</th> 
+                        <th>Question</th>
+                        <th>Preview</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody >
+
+                    {% for question in questions %}
+                        {% include "TSAdminBundle:Tests:questionLibrary.html.twig"  %}
+
+                    {% endfor %}  
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Question</th>
+                        <th>Preview</th>
+
+                        <th>Edit</th>
+                        <th>Remove</th>
+
+                    </tr>
+                </tfoot>
+            </table>
+
+
+ <div class="col-md-12">
+        {% if nombrePages == 0 %} 
+           {% else %}
+        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default">
+            <i class="glyph-icon icon-arrow-left"></i>
+        </a>
+        <div class="button-group float-left">
+        {% for p in range(1, nombrePages) %}
+            <a {% if p == pages %} 
+                class="btn disabled large primary-bg"
+            {% endif %} 
+                class="btn large primary-bg" href="{{ path('ts_admin_questions', {'pages': p}) }}">
+                {{p}}
+            </a>
+      {% endfor %}
+        </div>
+        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default">
+            <i class="glyph-icon icon-arrow-right"></i>
+        </a>
+        {% endif %}
+    </div>
+    <br><br><br>
+        </div> 
+                  
+    </div>
+                   
+      <div class="divider mrg25T mrg25B"></div>
+    <span> <h3><i class="glyph-icon icon-upload heading-content"> Upload Questions</i></h3> </span>              
+    <form id="fileupload" action="{{ path('ts_admin_uploadQuestion')}}" method="POST"{{ form_enctype(form2) }} enctype="multipart/form-data">
+        <table class="float-right">
+            <tr>
+                <td>
+                    <div class="hidden"> 
+                {{ form_label(form2.file) }} 
+                </div>
+                </td>
+                <td>
+                    {{ form_widget(form2.file,{'attr':{'accept':'.csv,.xlsx'}}) }}
+                    
+                </td>
+                <td>
+                    <button type="submit" class="btn medium primary-bg start ">
+                        <span class="button-content">
+                            <i class="glyph-icon icon-upload"></i>
+                            Start upload
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+     {{ form_rest(form2) }}
+    </form>
+    {{ parent() }}
+<script>
+        function UpdateTypeQuestion(value)
+        {
+            document.getElementById('typeQ').value = value;
+
+        }
+
+    </script>  
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,43 @@
+{# src/TS/AdminBundle/Resources/views/Users/addUsers.html.twig #}
+<div  id="ModalAddTestType" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="left-side" method="post"{{ form_enctype(form) }}>
+
+
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Add Test Type </h3>
+        </div>
+        <div class="modal-body">
+            {# src/TS/AdminBundle/Resources/views/Users/addUsers.html.twig #}
+
+             <div class="form-row">
+                        <div class="form-input col-md-2">
+                            <label for="">
+                        {{ form_label(form.name) }}
+                            </label>
+                        </div>
+                        <div class="form-input col-md-8">
+                        {{ form_widget(form.name) }}
+                        </div>
+             </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-1 float-right">
+                <input type="hidden" name="superhidden" id="superhidden">
+                <input  type="submit" value="ADD" name="submitAction" class=" btn medium primary-bg" />
+            </div>
+
+            <button type="button" data-dismiss="modal" aria-hidden="true" style="width: 7%"class=" btn medium primary-bg" data-toggle="button">Close</button>
+        </div>
+        {{ form_rest(form) }}
+    </form>
+</div>
+
+
+
+
+

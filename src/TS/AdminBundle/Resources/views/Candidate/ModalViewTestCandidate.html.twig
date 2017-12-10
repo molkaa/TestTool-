@@ -1,0 +1,87 @@
+
+<div  id="ViewTest{{test.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">{{test.name}} </h3>
+    </div>
+    <div class="modal-body">
+
+
+        <div id="blockTest" class="row ">
+
+            <div class="col-md-12" style="margin-top:0px" >
+                <div class="content-box border-top border-bottom border-blue mrg25B col-md-11 center-margin">
+                   
+                    <div class="content-box-wrapper">
+                        <form class="col-md-10 center-margin" method="post" id='myform' >
+                            {% set Checkquestions = [] %}
+
+                            {% for candidateResponse in test.responses %}
+                                {% for question in questions %}
+
+                                    {% if question.type == ('one') %}
+                                        {% if candidateResponse.questionId is same as (question.id) %}
+                                            {% include "TSAdminBundle:Candidate:oneViewTest.html.twig" %}
+                                        {% endif %}
+
+
+                                    {% elseif question.type == ('many') %}
+                                        {% if (candidateResponse.questionId is same as (question.id)) and (question.id not in Checkquestions) %}
+                                            {% set Checkquestions = Checkquestions|merge([question.id]) %}
+                                            {% include "TSAdminBundle:Candidate:manyViewTest.html.twig" %}
+                                        {% endif %}
+
+
+                                    {% elseif question.type == ('menu') %}
+                                        {% if (candidateResponse.questionId is same as (question.id)) and (question.id not in Checkquestions) %}
+                                            {% set Checkquestions = Checkquestions|merge([question.id]) %}
+                                            {% include "TSAdminBundle:Candidate:menuViewTest.html.twig" %}
+                                        {% endif %}
+
+
+                                    {% elseif question.type == ('numeric') %}
+                                        {% if (candidateResponse.questionId is same as (question.id)) and (question.id not in Checkquestions) %}
+                                            {% set Checkquestions = Checkquestions|merge([question.id]) %}
+                                            {% include "TSAdminBundle:Candidate:numericViewTest.html.twig" %}
+                                        {% endif %}
+
+
+                                    {% elseif question.type == ('free') %}
+                                        {% if candidateResponse.questionId is same as (question.id) %}
+                                        {% include "TSAdminBundle:Candidate:freeViewTest.html.twig" %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                {% endfor %}
+                            {% endfor %}
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+
+
+        <button type="button" data-dismiss="modal" aria-hidden="true" class=" btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+    </div>
+
+
+</div>
+

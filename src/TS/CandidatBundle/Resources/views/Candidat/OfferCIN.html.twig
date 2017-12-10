@@ -1,0 +1,86 @@
+{# src\TS\AdminBundle\Resources\views\notifications\offerCIN.html.twig #}
+
+{% extends "TSCandidatBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}|PostOffer
+{% endblock %}
+{% block stylesheets%}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/boutons.css') }}" type="text/css" />
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block menu_nav %}
+    <script>
+        $(document).ready(function() {
+            var li = document.getElementById('3');
+            $(li).addClass('selected');
+        });
+    </script>
+    {{ parent() }}
+{% endblock %}
+{% block slider %}
+    {{ parent() }}
+{% endblock %}
+{% block mainbar%}
+    <div class="article">
+        <p class="infopost">
+            <span> <b style="font-weight: 700;font-size: 18px "> {{ offer.title}} </b> </span>
+        </p>
+        {#</p>#}
+        <div class="col12">
+            <div style="padding:10px;  display: -webkit-box">
+                <div class="col3">  <b>Team:&nbsp&nbsp&nbsp </b> {{ offer.team}} </div>
+                <div class="col3">  <b>Reference:&nbsp </b> {{ offer.reference}} </div>
+                <div class="col3"> <b>Test(s):&nbsp </b> 
+                    {% for tests in offer.tests %}
+                        {{ tests.name}}\
+                    {% endfor %} 
+                </div>
+                <div class="col3">  <b>Posted on:&nbsp </b> {{ offer.postedDate|date('d M Y') }} </div>
+            </div>
+            <div class="divid"></div>
+            <div  style="padding:10px; "  >
+                <div class="col12"> 
+                    {{ offer.shortDescription }}
+                </div>
+            </div>
+            <div >
+                <br/>
+                <div  style="padding:10px; " >
+                    <p  class="col12"> 
+                        {{ offer.longDescription }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {#    *******************************#}
+    </div>
+    <div class="article"  style=" padding-bottom: 40px;padding-right: 20px; padding-left: 20px;">
+        
+        <h3 style="padding:10px; "  >
+            <div style="color:#000000; font-weight: 700;font-size: 18px ; text-align: center" >
+                Do you want to apply for this offer ?
+            </div>
+        </h3>
+        <div style="padding:10px; " >
+            <div class="divide"></div>
+
+            <a class="btn btn-a" style="float:left" href="#" onclick="self.parent.location.href = '{{ path('ts_candidat_confirmPostOffer')}}?ref={{offer.reference}}';
+                    self.parent.tb_remove();">
+                << yes
+            </a>
+
+            <a class="btn btn-a" style="float:right" href="#" onclick="self.parent.location.href = '{{ path('ts_candidat_offers')}}';
+                    self.parent.tb_remove();">
+                >> no
+            </a>
+        </div>
+    </div>
+    {{parent()}}
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+

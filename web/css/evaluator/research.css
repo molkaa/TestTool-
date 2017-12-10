@@ -1,0 +1,70 @@
+input{
+    display: inline-block;
+    /*    position: absolute;
+        margin-top: -29px;
+        z-index: 30;
+        margin-left: 180px;
+        width: 100px;*/
+}
+section.ac-container input.btn.btn-primary{
+    display: inherit;  
+    position: absolute;  
+    margin-top: -33px; 
+    z-index: 30;    
+    margin-left: 90%;
+    background: -webkit-linear-gradient(top, #DA2525, #DA2525);
+}
+input[type="submit"].btn:hover {
+    border-top-color: #DA2525;
+    background: -webkit-linear-gradient(top, #DA2525, #DA2525);
+    color: #ccc;
+}
+/*section.ac-container input.btn.btn-primary:hover{
+    background: -webkit-linear-gradient(top, #DA2525, #DA2525);
+}*/
+.research{
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    padding: 5px 20px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 20;
+    display: block;
+    height: 100px;
+    cursor: pointer;
+    color: #777;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    line-height: 33px;
+    font-size: 15px;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+}
+div.research div
+{
+    width: 32%;
+    float: left;
+}
+input[type="text"]{
+  height: 20px;  
+}
+select{
+    height: 25px;
+}
+select,
+input[type="text"]
+{
+    position: absolute;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    outline: 0;
+    width:150px;
+    margin-top: 5px;
+}

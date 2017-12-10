@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <html>
+      <head>
+          <meta charset="utf-8" />
+          <script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+          <!--script type="text/javascript" src="knockout-3.0.0.js"></script-->
+          <!--script type="text/javascript" src="angular.min.js"></script-->
+          <script type="text/javascript" src="globalize.min.js"></script>
+          <script type="text/javascript" src="dx.chartjs.js"></script>
+	    <!-- ... -->
+		
+		
+    <script type="text/javascript">
+       $('#chartContainer').append(
+	'<div id="gauge" style="width: 80%; height: 100%; margin-top: 20px; float: left;"></div>',
+	'<div id="panel" style="width: 20%; text-align: left; margin-top: 20px; float: left;"></div>'
+);
+
+var products = [
+  { name: 'Hummers', count: 41 },
+  { name: 'Shovers', count: 32 },
+  { name: 'Ladders', count: 13 },
+  { name: 'Watering cans', count: 48 },
+  { name: 'Drills', count: 19 }
+];
+
+var gauge = $('#gauge').dxBarGauge({
+	startValue: 0,
+	endValue: 100,
+	values: [20, 40, 60, 80, 95],
+	label: {
+		format: 'fixedPoint',
+		precision: 0
+	}
+}).dxBarGauge('instance');
+
+$('#panel').append($.map(products, function (product) {
+	return $('<div></div>').append(
+		'<input type="checkbox" value="' + product.count + '" checked></input>',
+		'<span style="margin-left: 10px;">' + product.name + '</span>'
+	);
+}));
+
+var $inputs = $('#panel input').change(handleChange);
+
+function handleChange () {
+	var values = $.map($inputs, function (input) {
+		return $(input).prop('checked') ? $(input).val() : null;
+	});
+	gauge.values(values);
+}
+
+handleChange();
+    </script>
+      </head>
+    <body>	
+    <div id="barGaugeContainer" style="height:320px"></div>
+</body>
+  </html>

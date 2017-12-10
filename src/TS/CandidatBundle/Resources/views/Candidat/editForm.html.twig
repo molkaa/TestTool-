@@ -1,0 +1,98 @@
+{# src/TS/CandidatBundle/Resources/views/Candidat/htapply.html.twig #}
+
+{% extends "TSCandidatBundle::layout.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/accordion.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/boutons.css')}}" />
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('js/accordion/accordion.js')}}"></script>
+{% endblock %}
+{% block title %}
+ {{ parent() }}|edit
+{% endblock %}
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+{% block menu_nav %}
+{{parent () }}
+{% endblock %}
+{% block slider %}
+{{ parent() }}
+{% endblock %}
+{% block mainbar%}
+
+<section class="ac-container">
+
+    <form method="post" {{ form_enctype(form) }} novalidate="novalidate">
+    {% block field_label %}
+    {% spaceless %}
+        <div>
+            <input id="ac-0" name="accordion-1" type="radio" checked />
+            <label class="newLabel" >Edit</label>
+        </div>
+        <div>
+            <input id="ac-1" name="accordion-1" type="radio" checked />
+            <label class="newLabel" for="ac-1">Personal Details*</label>
+            <article class="well personal" >
+                <div id="personalDetails">
+                    {% for child in form %}
+                        {% if child is not same as (form.academicDetails) 
+                          and child is not same as (form.professionalExperiences)
+                          and child is not same as (form.languages) 
+                          and child is not same as (form.technologies) %}
+                            {{ form_row(child) }}
+                        {% endif %}
+                    {% endfor %}
+                 {#    {% if candidat.picture is null%}
+                    <img width="36" src="{{ asset(candidat.picture.webPath) }}" alt="{{ candidat.picture.name }}">
+                  {% else %}
+                    <img width="36" src="/TunisiaSite/web/images/profile.png"  >
+                  {% endif%}#}
+                </div>
+            </article>  
+        </div>
+        <div>
+            <input id="ac-2" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-2">Academic Details*</label>
+            <article class="well academic" >
+                 {{ form_widget (form.academicDetails) }}
+            </article>
+        </div>
+        <div>
+            <input id="ac-3" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-3">Professional Eperience</label>
+            <article class="well professional" >
+                 {{ form_widget(form.professionalExperiences) }}
+            </article>
+        </div>
+        <div>
+            <input id="ac-4" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-4">Technologies*</label>
+            <article class="well technologies" >
+                 {{ form_widget(form.technologies) }}
+            </article>
+        </div>
+        <div>
+            <input id="ac-5" name="accordion-1" type="radio" />
+            <label class="newLabel" for="ac-5">Languages*</label>
+            <article class="well languages" >
+                 {{ form_widget(form.languages) }}
+            </article>
+        </div>
+        <input type="submit" class="btn btn-primary" />
+        {% include "TSCandidatBundle:Candidat:formulaire.html.twig"  %}
+        {% endspaceless %}
+    {% endblock field_label %}
+    </form>
+</section>
+{{ parent() }}
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+{% endblock %}
+
+

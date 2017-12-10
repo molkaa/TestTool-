@@ -1,0 +1,248 @@
+{# src/TS/CandidatBundle/Resources/views/Candidat/htapply.html.twig #}
+
+{% extends "TSCandidatBundle::layout.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/accordion.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/boutons.css')}}" />
+<style>
+    table {
+        width:100%;
+    }
+    tr{
+        width:50%;
+    }
+    td { 
+        padding-left: 40px;
+    }
+</style>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('js/accordion/accordion.js')}}"></script>
+{% endblock %}
+{% block title %}
+ {{ parent() }}|How to apply
+{% endblock %}
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+{% block menu_nav %}
+<script>
+    $(document).ready(function() {
+        var li = document.getElementById('4');
+        $(li).addClass('selected');
+
+        var li1 = document.getElementById('a');
+        $(li1).addClass('selected');
+    });
+</script>
+{{ parent()}}
+{% endblock %}
+{% block slider %}
+{{ parent() }}
+{% endblock %}
+{% block mainbar%}
+<div  class="ac-container">
+    <div class="mainbar">
+        <div class="article">
+{# ************************* PERSONAL DETAILS ************************************** #}
+            <div class="col6 titleDetails" style="text-align: left" >
+                <img src="/TestTool/web/images/blueLine.png" />
+                Personal Details : 
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td class="col6">
+                            Adress : {{ candidat.adress }}
+                        </td>
+
+                        <td class="col6">
+                            Phone : {{ candidat.phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            Email : {{ candidat.email }}
+                        </td>
+
+                        <td class="col6">
+                            Birth : {{ candidat.dateOfBirth|date('d M Y') }}: {{ candidat.placeOfBirth }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            Experience : {{ candidat.experience }} years
+                        </td>
+
+                        <td class="col6">
+                            Request for : &nbsp {{ candidat.Candidature }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            Family Situation : &nbsp {{ candidat.familySituation }}
+                        </td>
+
+                        <td class="col6">
+                            Sex: &nbsp {{ candidat.sex }}
+                        </td>
+                    </tr>
+                    <div class="links">
+                  {% if candidat.motivation is not null %}
+                        <tr>
+                            <td class="col6">
+                                <a href="{{ asset(candidat.motivation.webPath) }}?KeepThis=true&TB_iframe=true&height=880" class="thickbox read" >
+                                    &raquo; Motivation
+                                </a>
+                            </td>
+
+                  {% endif %}
+
+                            <td class="col6">
+                                <a href="{{ asset(candidat.cv.webPath) }}?KeepThis=true&TB_iframe=true&height=880" class="thickbox read" >
+                                    &nbsp &raquo;  CV
+                                </a>
+                            </td>
+                        </tr>  
+                    </div>
+
+                </table>
+            </div>
+{# ************************* ACADEMIC DETAILS ************************************** #}
+            <div class=" col6 titleDetails" style="text-align: left" >
+                <img src="/TestTool/web/images/blueLine.png" />
+                Academic Details : 
+            </div>
+{% for academicDetails in candidat.academicDetails %}
+            <div >
+                <table>
+                    <tr>
+                        <td class="col6">
+                            Establishment : {{ academicDetails.establishment }}
+                        </td>
+
+                        <td class="col6">
+                            Speciality : {{ academicDetails.Speciality }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            Degree : {{ academicDetails.degree	 }}
+                        </td>
+
+                        <td class="col6">
+                            diploma : {{ academicDetails.diploma }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            StartYear : {{ academicDetails.startYear }}
+                        </td>
+
+                        <td class="col6">
+                            EndYear : {{ academicDetails.endYear }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+{% endfor %}
+{# ************************* Professional Experience ************************************** #}
+            <div class="col6 titleDetails" style="text-align: left" >
+                <img src="/TestTool/web/images/blueLine.png" />
+                Professional Experience : 
+            </div>
+
+{% for professionalExperiences in candidat.professionalExperiences %}
+            <div>
+                <table>
+
+                    <tr>
+                        <td class="col6">
+                            Company : {{ professionalExperiences.company }}
+                        </td>
+
+                        <td class="col6">
+                            Function : {{ professionalExperiences.function }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            StartDate : {{ professionalExperiences.startDate|date('d-m-Y')  }}
+                        </td>
+
+                        <td class="col6">
+                            EndDate : {{ professionalExperiences.endDate|date('d-m-Y')  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col6">
+                            Description : {{ professionalExperiences.description}}
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <br/>
+{% endfor %}
+{# ************************* Technologies  ************************************** #}
+            <div class="col6 titleDetails" style="text-align: left" >
+                <img src="/TestTool/web/images/blueLine.png" />
+                Technologies : 
+            </div>
+
+{% for technologies in candidat.technologies %}
+            <div>
+                <table>
+                    <tr>
+                        <td class="col6">
+                            Name : {{ technologies.name }}
+                        </td>
+
+                        <td class="col6">
+                            Level : {{ technologies.level }}
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+            </div>
+{% endfor %}
+
+{# ************************* Languages  ************************************** #}
+            <div class="col6 titleDetails" style="text-align: left" >
+                <img src="/TestTool/web/images/blueLine.png" />
+                Languages : 
+            </div>
+
+{% for languages in candidat.languages %}
+            <div>
+                <table>
+                    <tr>
+                        <td class="col6">
+                            language : {{ languages.language }}
+                        </td>
+
+                        <td class="col6">
+                            Level : {{ languages.level }}
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+            </div>
+{% endfor %}
+
+        </div>
+{#        <a href="{{ path('ts_candidat_canoffers')}}"  title="offers" style="float:right" class="btn btn-a" >offers >></a>#}
+        <a href="{{ path('ts_candidat_edit')}}"  title="edit" class="btn btn-a" > << edit </a>
+    </div>
+</div>
+{{ parent() }}
+
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+{% endblock %}
+
+

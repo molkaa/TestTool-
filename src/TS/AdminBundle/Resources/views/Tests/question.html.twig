@@ -1,0 +1,65 @@
+{# src/TS/EvaluatorBundle/Resources/views/Tests/question.html.twig #}
+
+<tr>
+
+    <td>{{question.id}} </td>
+
+
+    {% if question.type is same as ('one') %} 
+        <td><div style="font-size: 2,5em; color: blueyellow" class=" glyph-icon icon-dot-circle-o"><p class="hidden">Multiple Choice</p></div></td>
+    {% elseif question.type is same as ('many') %}   
+        <td><div style="font-size: 2,5em;color: blueyellow" class=" glyph-icon icon-check-square-o mrg5R"><p class="hidden">Checkboxes</p></div></td>
+    {% elseif question.type is same as ('menu') %}   
+        <td><div style="font-size: 2,5em;color: blueyellow" class="glyph-icon icon-caret-square-o-down mrg5R"><p class="hidden">Drop Down</p></div></td>
+    {% elseif question.type is same as ('free') %}   
+        <td><div style="font-size: 2,5em;color: blueyellow" class=" glyph-icon icon-pencil-square-o mrg5R"><p class="hidden">Essay</p></div></td>
+    {% elseif question.type is same as ('numeric') %}   
+        <td><div style="font-size: 2,5em;color: blueyellow" class=" glyph-icon icon-arrows-alt mrg5R"><p class="hidden">Numeric</p></div></td>
+    {% endif %}
+
+
+    <td id="text{{question.id}}">
+        <p id="text{{question.id}}">
+
+        </p>
+
+    </td>
+
+    <td>
+        <a href="#View{{question.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="view test">
+            <i style="font-size: 2,5em;" class="glyph-icon icon-eye"></i>
+        </a>
+
+    </td>
+
+    
+        <td>
+            <a href="#Edit{{question.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="edit test">
+                <i style="font-size: 2,5em;" class="glyph-icon icon-edit"></i>
+            </a>
+
+        </td>
+        <td>
+            <a href="#Remove{{question.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="remove test">
+                <i style="font-size: 2,5em;" class="glyph-icon icon-remove"></i>
+            </a>
+
+        </td>
+    
+</tr>       
+
+
+
+{% include "TSAdminBundle:Tests:ModalEditQuestion.html.twig"  %}{% include "TSAdminBundle:Tests:ModalRemoveQuestion.html.twig"  %}  {% include "TSAdminBundle:Tests:ModalViewQuestion.html.twig"  %}    
+<script type = "text/javascript">
+     var textq
+     = {{ question.text|json_encode|raw}};
+             var textsansespace = textq.replace(/<br\s*[\/]?>/gi, " ")
+     var textlimit = textsansespace.substring(0, 100);
+     var points = '...'
+     //var textclear= textsansespace.replace(/(&nbsp;)/g,' ');
+     $('p#text{{question.id}}').append(textlimit + points);
+
+
+</script>   
+

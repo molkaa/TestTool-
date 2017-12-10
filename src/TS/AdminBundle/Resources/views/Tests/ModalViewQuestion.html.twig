@@ -1,0 +1,297 @@
+ 
+{% if question.type == ('one') %}
+
+    <div  id="View{{question.id}}"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Question Id : {{question.id}}</h3>
+        </div>
+        <div class="modal-body">
+            <div id="questionone{{question.id}}">
+                <u><b>Question :</b></u>
+                <br>
+                <br>
+                <div class="col-md-12">  
+                    
+                    {% if question.introduction is not null %}
+                        <b id="introduction{{question.id}}">{{ question.introduction|raw}}</b> 
+                        <br/>
+                    {% endif %}
+                    <p id="text1{{question.id}}">{{ question.text|raw}} </p>
+                    <br>
+                    {% if question.questionPicture is not null %}
+                     <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+                     <br>
+                    {% endif %}
+                </div>
+                <div class="form-row pad0B">
+                    <div class="form-checkbox-radio col-md-12">
+                        <div class="checkbox-radio">
+                            {% for response in question.responses %}
+                                <input id="response{{response.id}}{{question.id}}" value="{{response.response}}" type="radio" name="{{question.id}}" onclick="tickrep({{response.id}},{{question.id}} );">
+                                <i> <label class="font-blue" for="{{question.id}}">{{response.response}}</label></i>
+                                <br/>
+                            {%endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+    </div>
+
+{%elseif question.type == ('many')%}
+    <div  id="View{{question.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Question Id : {{question.id}}</h3>
+        </div>
+        <div class="modal-body">
+            <div id="questionone{{question.id}}">
+                <u><b>Question  :</b></u>
+                <br>
+                <br>
+                 <div class="col-md-12">  
+                    
+                    {% if question.introduction is not null %}
+                        <b id="introduction{{question.id}}">{{ question.introduction|raw}}</b> 
+                        <br/>
+                    {% endif %}
+                    <p id="text1{{question.id}}">{{ question.text|raw}} </p>
+                    <br>
+                    {% if question.questionPicture is not null %}
+                     <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+                     <br>
+                    {% endif %}
+                </div>
+
+
+
+                <div class="form-row pad0B">
+
+                    <div class="form-checkbox-radio col-md-12">
+                        <div class="checkbox-radio">
+                            {% for response in question.responses %}
+                                <input id="response{{response.id}}{{question.id}}" value="{{response.response}}" type="checkbox" name="{{question.id}}[]" onclick="tickrep({{response.id}},{{question.id}} );">
+                                <label  class="font-blue" for="{{question.id}}">{{response.response}}</label>
+                                <br/>
+                            {%endfor %}
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+        </div> 
+
+    </div>
+
+
+{% elseif question.type == ('menu') %}
+    <div  id="View{{question.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Question Id : {{question.id}}</h3>
+        </div>
+        <div class="modal-body">
+            <div id="questionone{{question.id}}">
+                <u><b>Question  :</b></u>
+                <br><br>
+
+                <div class="col-md-12">  
+                    
+                    {% if question.introduction is not null %}
+                        <b id="introduction{{question.id}}">{{ question.introduction|raw}}</b> 
+                        <br/>
+                    {% endif %}
+                    <p id="text1{{question.id}}">{{ question.text|raw}} </p>
+                    <br>
+                    {% if question.questionPicture is not null %}
+                     <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+                     <br>
+                    {% endif %}
+                </div>
+
+                <br><br>
+
+                <div class="form-row pad0B">
+                    <div class="form-input col-md-10">
+                        <select  id="select{{question.id}}"  multiple name="{{question.id}}[]" class="chosen-select"   onchange="tickselect({{question.id}});">
+                            <option value=""> </option>
+                            {%for response in question.responses%}
+                                <option value="{{response.response}}">{{response.response}}</option>
+                            {%endfor %}
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+
+    </div>
+{% elseif question.type == ('free') %}
+
+    <div  id="View{{question.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Question Id : {{question.id}}</h3>
+        </div>
+        <div class="modal-body">
+            {# src/TS/AdminBundle/Resources/views/Candidate/menuTest.html.twig #}
+            <div id="questionone{{question.id}}">
+                <u><b>Question  :</b></u>
+
+                <br>
+                <br>
+
+                 <div class="col-md-12">  
+                    
+                    {% if question.introduction is not null %}
+                        <b id="introduction{{question.id}}">{{ question.introduction|raw}}</b> 
+                        <br/>
+                    {% endif %}
+                    <p id="text1{{question.id}}">{{ question.text|raw}} </p>
+                    <br>
+                    {% if question.questionPicture is not null %}
+                     <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+                     <br>
+                    {% endif %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-input col-md-10">
+                        <textarea class="large-textarea box-shadow-blue font-blue"   id="free{{question.id}}" name="{{question.id}}"  onblur="tickfree({{question.id}});" ></textarea>
+                    </div>
+
+                    
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+            </div>
+        </div>
+
+
+    {% elseif question.type == ('numeric') %}
+
+        <div  id="View{{question.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                    <i class="glyph-icon icon-remove"></i>
+                </a>
+
+                <h3 id="myModalLabel">Question Id : {{question.id}}</h3>
+            </div>
+            <div class="modal-body">
+
+                <div id="questionone{{question.id}}">
+                    <u><b>Question  :</b></u>
+                    <br>
+                    <br>
+                     <div class="col-md-12">  
+                    
+                    {% if question.introduction is not null %}
+                        <b id="introduction{{question.id}}">{{ question.introduction|raw}}</b> 
+                        <br/>
+                    {% endif %}
+                    <p id="text1{{question.id}}">{{ question.text|raw}} </p>
+                    <br>
+                    {% if question.questionPicture is not null %}
+                     <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+                     <br>
+                    {% endif %}
+                </div>
+                    <br><br>
+
+
+
+
+
+                    <div class="form-row">
+                        <div class="col-md-8">
+                           
+                           
+
+                                {% for response in question.responses %}
+                                    <div class="span2">
+                                            <div class="form-label col-md-4">
+
+                                                <label class="font-blue" for="{{question.id}}">
+                                                    {{response.response}}
+                                                </label>
+
+                                            </div>
+
+                                            <div class="form-input col-md-8">
+
+                                                <input id="numeric{{response.id}}{{question.id}}" placeholder="" class="col-md-12" type="text" name="{{question.id}}{{response.id}}" onchange="ticknumeric({{response.id}},{{question.id}} ,{{question.responses|length}} );">
+
+                                            </div>
+                                    </div> 
+                                                <br><br>
+                                {%endfor %}
+
+
+                         
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+            </div>
+        </div>
+
+
+    {% endif %}  
+
+
+
+
+
+
+
+
+
+

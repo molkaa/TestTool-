@@ -1,0 +1,26 @@
+{# src/TS/AdminBundle/Resources/views/Candidate/checkQuestions.html.twig #}
+{% extends "TSAdminBundle:Candidate:candidatTests.html.twig" %}
+{% block content %}
+ 
+    <form class="col-md-10 center-margin" method="post" >
+        <div class="form-row pad0B">
+            <div class="form-checkbox-radio col-md-12">
+                <div class="checkbox-radio">
+                    {% for number in numbers %}
+                        {{number}} 
+                        <br/>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+            <input href=""  type="submit" value="Edit" name="submitAction" class="btn medium primary-bg primary-bg radius-all-4" />
+        </div>
+        <br/>        
+        <br/>
+        <br/>
+    </form>
+    <a href="{{ path('ts_admin_persistCandidateTests')}}" class="btn medium primary-bg col-md-4 col-md-offset-4" title="">
+        <span class="button-content">submit</span>
+    </a>
+{% endblock %}

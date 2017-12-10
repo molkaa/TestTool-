@@ -1,0 +1,55 @@
+{# src/TS/AdminBundle/Resources/views/Tables/showValues.html.twig #}
+<tr>
+    <td class="font-bold ">
+        {{value.name}}
+    </td>
+    <td class="text-center float-right">
+        <a id="edit-value{{value.id}}" onclick="changeEditValue(this);" class="btn small hover-blue tooltip-button" data-placement="top" title="" data-original-title="Edit">
+            <i class="glyph-icon icon-edit"></i>
+        </a>
+        <a id="remove-value{{value.id}}" onclick="changeRemoveValue(this);" class="btn small hover-red tooltip-button" data-placement="top" title="" data-original-title="Remove">
+            <i class="glyph-icon icon-trash-o"></i>
+        </a>
+    </td>
+</tr>
+
+{#////*********************************** edit page ********************************#}
+<tr class="row col-md-12 text-center" id="edit-value{{value.id}}#" style="display:none">
+    <td style="width: 900px;" class="center-margin">
+        {{ render(controller('TSAdminBundle:Tables:selectEditValue', {'id':value.id,'entity':entity,'entityType':entityType} )) }}
+    </td>
+</tr>
+{#////*********************************** remove page ********************************#}
+<tr class="row col-md-12 text-center" id="remove-value{{value.id}}#" style="display:none">
+    <td style="width: 900px;" class="center-margin">
+        {{ render(controller('TSAdminBundle:Tables:selectRemoveValue', {'id':value.id,'entity':entity} )) }}
+    </td>
+</tr>
+{#////*********************************** Change element Script  ********************************#}
+
+<script>
+
+    function changeEditValue(_this)
+    {
+        var tr = document.getElementById(_this.id + '#');
+
+        if (tr.style.display === "none") {
+            tr.style.display = "block";
+        }
+        else {
+            tr.style.display = "none";
+        }
+    }
+    function changeRemoveValue(_this)
+    {
+        var tr = document.getElementById(_this.id + '#');
+
+        if (tr.style.display === "none") {
+            tr.style.display = "block";
+        }
+        else {
+            tr.style.display = "none";
+        }
+    }
+</script>
+

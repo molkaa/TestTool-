@@ -1,0 +1,11 @@
+tsldap_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: TSLDAPBundle:Default:index }
+
+tsldap_logout:
+    pattern:  /admin/logout
+    defaults: { _controller: TSLDAPBundle:LDAP:logout }
+tsldap_Employeelogout:
+    pattern:  employee/quiz/Logout
+    defaults: { _controller: TSLDAPBundle:LDAP:Employeelogout }
+    

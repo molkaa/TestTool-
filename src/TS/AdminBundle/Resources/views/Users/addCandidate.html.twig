@@ -1,0 +1,157 @@
+{# src\TS\AdminBundle\Resources\views\users\addEvaluator.html.twig #}
+
+{% extends "TSAdminBundle::layout.html.twig" %}
+
+
+{% block title %}
+    {{ parent() }}|admin|addCandidate
+{% endblock %}
+
+{% block icons %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+
+
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar%}
+    {{ parent() }}
+{% endblock %}
+
+{% block right%}
+    {{ parent() }}
+{% endblock %}
+
+{% block content%}
+    <div id="page-title"></div>
+    <div class="row">
+
+        <div class="col-md-12">      
+
+            
+                <a class="btn medium primary-bg float-right"   href="#ModalAddCandidate"  title="Add Candidate" data-id  data-toggle="modal" data-placement="top" role="button">
+                    <span class="glyph-icon icon-separator">
+                        <i class="glyph-icon icon-plus-square"></i>
+                    </span>
+                    <span class="button-content">
+                        Add Candidate
+                    </span>
+                </a>
+           
+
+
+        </div>
+        <br><br>
+        {% include "TSAdminBundle:Admin:researchByState.html.twig" %}   
+
+
+
+    </div>
+    <div class="col-md-12">
+        <div class="profile-box profile-box-alt content-box">
+            <div class="content-box-header clearfix primary-bg">
+                <div class="user-details">
+
+                </div>
+            </div>
+
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        {% for user in users %}
+                            {% include "TSAdminBundle:Users:showCandidate.html.twig"with {'accueil': true} %}
+                        {% endfor %}
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% include "TSAdminBundle:Users:ModalAddCandidate.html.twig"  %}    
+    <div class="row">
+        <div class="col-md-4">
+            {% if nombrePages == 0 %} 
+                No candidates
+            {% else %}
+                <a href="javascript:;" class="btn large float-left mrg5R ui-state-default">
+                    <i class="glyph-icon icon-arrow-left"></i>
+                </a>
+                <div class="button-group float-left">
+                    {% for p in range(1, nombrePages) %}
+                        <a {% if p == pages %} 
+                            class="btn disabled large primary-bg"
+                            {% endif %} 
+                                class="btn large primary-bg" href="{{ path('ts_admin_addCandidate', {'pages': p}) }}">
+                                {{p}}
+                            </a>
+                            {% endfor %}
+                            </div>
+                            <a href="javascript:;" class="btn large float-left mrg5L ui-state-default">
+                                <i class="glyph-icon icon-arrow-right"></i>
+                            </a>
+                            {% endif %}
+                            </div>
+                        </div>
+                        {{ parent() }}
+                        <script>
+                            
+                            //success
+                            $(function () {
+                            {% for flashMessage in app.session.flashbag.get('notice') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type', 'success');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+                            
+                            
+                            //warnning
+                             $(function () {
+                            {% for flashMessage in app.session.flashbag.get('warnning') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type','danger');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+
+
+                        </script>
+
+                        {% endblock %}
+
+
+
+
+
+
+
+
+
+

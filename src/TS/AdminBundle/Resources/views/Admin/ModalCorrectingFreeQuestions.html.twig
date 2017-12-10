@@ -1,0 +1,69 @@
+
+<div  id="CheckAnswer{{test.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<form action="{{ path('ts_admin_editAllTests')}}?id={{test.id}}" method="post">
+
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">{{test.name}} </h3>
+    
+    
+    <div class="modal-body">
+
+
+      
+            
+                         
+                        {% for candidateResponse in test.responses %}
+                            {% if candidateResponse.note is same as ('need correction') %}
+                                {% for question in questions %}
+                                    {% if candidateResponse.questionId is same as (question.id) %}
+                                        <div class="content-box border-top border-blue mrg25B">
+                                            <h3 id="text{{question.id}}" class="content-header">
+                                                <script type = "text/javascript">
+                                                    $('h3#text{{question.id}}').append({{ question.text|json_encode|raw}});
+                                                </script>
+                                            </h3>
+                                            <div class="content-box-wrapper">
+                                                <h4>Correct Answer :</h4>
+                                                <br>
+                                                {% for resp in question.responses %}
+                                                <p>{{resp.CorrectAnswer}}</p>
+                                                {% endfor %}
+                                                <div class="divider"></div>
+                                                <h4>Candidate Answer :</h4>
+                                                <br>
+                                                <p>{{candidateResponse.response}}</p>
+                                                <input type="text" style="width: 15%; margin-left: 85%;" class="right border-top border-blue small" name="{{candidateResponse.id}}" placeholder="  {{question.note}}">
+                                               
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                       
+                    
+
+        
+
+    
+    <div class="modal-footer">
+
+
+
+  <div class="col-md-1 float-right">
+            <input type="submit" value="Submit" name="submitAction" class="btn medium primary-bg radius-all-4" />
+
+        </div>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="btn medium primary-bg radius-all-4" data-toggle="button">Close</button>
+</div>
+</div>
+</div>
+
+ </form>
+</div>
+

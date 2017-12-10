@@ -1,0 +1,79 @@
+{# src\TS\AdminBundle\Resources\views\tables\editTests.html.twig #}
+
+{% extends "TSAdminBundle::layout.html.twig" %}
+
+
+{% block title %}
+ {{ parent() }}|admin|testsType
+{% endblock %}
+
+{% block icons %}
+  {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+
+ {% block sidebar%}
+{{ parent() }}
+{% endblock %}
+
+{% block right%}
+{{ parent() }}
+{% endblock %}
+
+{% block content%}
+ <div id="page-title"></div>
+<div class="row">
+    <div class="col-md-12">      
+
+           
+                <a class="btn medium primary-bg float-right"   href="#ModalAddTestType"  title="Add Test Type" data-id  data-toggle="modal" data-placement="top" role="button">
+                    <span class="glyph-icon icon-separator">
+                        <i class="glyph-icon icon-plus-square"></i>
+                    </span>
+                    <span class="button-content">
+                        Add Test Type
+                    </span>
+                </a>
+           
+
+
+        </div>
+        <br><br>
+
+
+<div class="col-md-12">
+    <div class="profile-box profile-box-alt content-box">
+        <div class="content-box-header clearfix primary-bg">
+            <div class="user-details">
+
+            </div>
+        </div>
+        <table class="table">
+            <tbody>
+{#                <tr>#}
+                {% for value in values %}
+                    {% include "TSAdminBundle:Tables:showValues.html.twig" %}
+                {% endfor %}
+{#                </tr>#}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% include "TSAdminBundle:Tables:ModalAddTestType.html.twig" %}
+{% include "TSAdminBundle:Notification:GrowlNotif.html.twig" %}
+{{ parent() }}
+{% endblock %}
+

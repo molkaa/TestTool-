@@ -1,0 +1,31 @@
+{# src/TS/AdminBundle/Resources/views/Admin/editFreeTest.html.twig #}
+<tr > 
+    <td>
+        {{test.name}}
+    </td>
+    <td>
+        {% if test.dateSubmit is not empty  %} 
+        {{test.dateSubmit.format(' jS  F Y h:i:s A')}}
+        {% endif %}
+    </td>
+     <td>
+      
+        {{testP.eliminatoryNote}}
+        
+    </td>
+    <td>
+         {% if  testP.TestStatestics is not empty %} 
+        {{test.mark}}/{{testP.TestStatestics.numberQuestions}}
+      
+        {% else %}
+         {{test.mark}}/{{testP.note}}
+        {% endif %}
+    </td>
+    <td>
+        {% if test.note is not null %}
+            {{test.note}}
+        {% endif %}
+    </td>
+  
+   
+</tr>

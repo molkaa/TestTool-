@@ -1,0 +1,139 @@
+
+<div  id="ModalAdd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="left-side" method="post"{{ form_enctype(form) }}>
+
+
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Add Test </h3>
+        </div>
+        <div class="modal-body">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div  id="big-box#" class="content-box box-toggle">
+
+                        <div  class="content-box-wrapper">
+                            <div id="errormsg"class="col-md-6" style="display: none">
+
+                                <div class="infobox error-bg mrg0A">
+                                    <p>Error message box using the <b>.error-bg</b> color scheme. <a href="#" title="Link example">Link example</a></p>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        {{ form_label(form.name) }}
+                                        <span class="required" style="color:red">*</span>
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10" >
+                                    {{ form_widget(form.name) }}
+                                </div>
+                            </div>
+                            <div class="form-row" >
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        type
+                                        <span class="required" style="color:red">*</span>
+                                    </label>
+                                </div>
+                                <div  class="form-input col-md-10">
+                                    <select required="required" id="choice" name="type" class="chosen-select">
+                                        <option > </option>
+                                        {% for thisTest in allTests %}
+                                            <option  value={{thisTest.name}} >
+                                                {{thisTest.name}}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2 hidden">
+                                    {{ form_label(form.note) }}
+                                    <span class="required" style="color:red">*</span>
+                                </div>
+                                <div class="form-input col-md-4 hidden">
+                                    {{ form_widget(form.note,{value:'0'}) }}
+                                </div>
+                                <div class="form-input col-md-2">
+                                    {{ form_label(form.eliminatoryNote) }}
+                                    <span class="required" style="color:red">*</span>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    {{ form_widget(form.eliminatoryNote) }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        {{ form_label(form.time) }}(in minutes)
+                                        <span class="required" style="color:red">*</span>
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10" >
+                                    {{ form_widget(form.time) }}
+                                </div>
+                            </div>  
+                             <div class="form-row">
+                                  <div class="form-input col-md-2">
+                                      
+                                        {{ form_label(form.calculationMethod) }}
+                                        <span class="required" style="color:red">*</span>
+                                     
+                                    </div>
+                                    <div class="form-input col-md-10" >
+                                        {{ form_widget(form.calculationMethod) }}
+                                    </div>   
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+
+                function changeElement(_this)
+                {
+                    var div = document.getElementById(_this.id + '#');
+                    var div2 = document.getElementById(_this.id);
+                    if (div.className === "content-box box-toggle content-box-closed") {
+                        div2.className = "glyph-icon icon-toggle icon-chevron-up";
+                        div.className = "content-box box-toggle";
+                    }
+                    else {
+                        div2.className = "glyph-icon icon-toggle icon-chevron-down";
+                        div.className = "content-box box-toggle content-box-closed";
+                    }
+                }
+            </script>
+
+        </div>
+        <div class="modal-footer">
+
+
+            <div class="col-md-1 float-right" >
+
+                <input type="hidden" name="superhidden" id="superhidden">
+                <input type="submit" value="ADD" name="submitAction" class="btn medium primary-bg" />
+
+            </div>
+
+            <button type="button" data-dismiss="modal" aria-hidden="true" class=" btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+        {{ form_rest(form) }}
+        {% include "TSAdminBundle:Tests:formulaire.html.twig"  %}
+
+    </form>
+</div>
+

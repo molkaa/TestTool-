@@ -1,0 +1,22 @@
+{# src/TS/SRecBundle/Resources/views/layout.html.twig #}
+
+{% extends "::layout.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/accordion.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/SRec/accordion.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/SRec/style.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/SRec/menu.css')}}" />
+{% endblock %}
+{% block title %}
+  {{ parent() }}|SRec
+{% endblock %}
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+{% block slider %}
+  {{ parent() }}
+{% endblock %}
+{% block footer %}
+  {{ parent() }}
+{% endblock %}

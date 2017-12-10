@@ -1,0 +1,16 @@
+input{
+    display: inline-block;
+    /*    position: absolute;
+        margin-top: -29px;
+        z-index: 30;
+        margin-left: 180px;
+        width: 100px;*/
+}
+section.ac-container input.btn.btn-primary{
+    background: -webkit-linear-gradient(top, #0D8FD1, #0D8FD1);
+}
+input[type="submit"].btn:hover {
+    border-top-color: #0D8FD1;
+    background: -webkit-linear-gradient(top, #0D8FD1, #0D8FD1);
+    color: #ccc;
+}

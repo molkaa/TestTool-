@@ -1,0 +1,54 @@
+{# src/TS/EvaluatorBundle/Resources/views/Tests/test.html.twig #}
+
+<tr>
+
+    <td>{{test.id}} </td>
+
+    <td>{{test.type}}</td>
+
+    <td>{{test.name}}</td>
+    <td>{{ test.note}}</td>
+    <td>{{ test.eliminatoryNote}}</td>
+    <td>{{ test.time}} minutes</td>
+    <td>{{ test.calculationMethod }}</td>
+    <td>
+        <a href="#View{{test.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="view test">
+            <i style="font-size: 2,5em;" class="glyph-icon icon-eye"></i>
+        </a>
+
+    </td>
+
+    
+        <td>
+            <a href="#Customize{{test.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="customize test">
+                <i style="font-size: 2,5em;" class="glyph-icon icon-cog"></i>
+            </a>
+
+        </td>
+        <td>
+
+            <a href="{{ path('ts_admin_settingTest', { 'id': test.id })}}"
+               class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="setting test">
+                <i style="font-size: 2,5em;" class="glyph-icon icon-wrench"></i>
+            </a>
+
+        </td>
+        <td>
+            <a href="#Edit{{test.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="edit test">
+                <i style="font-size: 2,5em;" class="glyph-icon icon-edit"></i>
+            </a>
+
+        </td>
+        <td>
+            <a href="#Remove{{test.id}}" class=" btn large hover-blue tooltip-button" data-toggle="modal" data-placement="top" role="button" title="remove test">
+                <i style="font-size: 2,5em;" class="glyph-icon icon-remove"></i>
+            </a>
+
+        </td>
+
+</tr>       
+
+
+
+{% include "TSAdminBundle:Tests:ModalEditTest.html.twig"  %}{% include "TSAdminBundle:Tests:ModalRemoveTest.html.twig"  %}  {% include "TSAdminBundle:Tests:ModalViewTest.html.twig"  %}    {% include "TSAdminBundle:Tests:ModalCustomizeTest.html.twig"  %}
+

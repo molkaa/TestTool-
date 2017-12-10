@@ -1,0 +1,160 @@
+ts_admin_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: TSAdminBundle:Default:index }
+ts_admin_admin:
+    pattern:  /admin
+    defaults: { _controller: TSAdminBundle:Admin:admin }
+#******************************candidatesTests **********************
+ts_admin_allTests:
+    pattern:  /admin/allTests/{pages}
+    defaults: { _controller: TSAdminBundle:Admin:tests ,pages: 1 }
+ts_admin_allResultTests:
+    pattern:  /admin/ResultTests
+    defaults: { _controller: TSAdminBundle:Admin:ResultTests}
+ts_admin_editAllTests:
+    pattern:  /admin/editFreeTests
+    defaults: { _controller: TSAdminBundle:Admin:editFreeTest }
+ts_quiz_home:                       
+    pattern:  emplyee/quiz/home
+    defaults: { _controller: TSAdminBundle:CandidateTests:quiz }
+ts_admin_candidateTests:
+    pattern:  emplyee/quiz/candidateTests
+    defaults: { _controller: TSAdminBundle:CandidateTests:candidateTests }
+ts_admin_persistCandidateTests:
+    pattern:  emplyee/quiz/candidateTests
+    defaults: { _controller: TSAdminBundle:CandidateTests:persistFinalSubmit }
+ts_admin_candidateTest:
+    pattern:  emplyee/quiz/candidateTest/{id}
+    defaults: { _controller: TSAdminBundle:CandidateTests:checkTest }
+ts_admin_candidateDescriptionTest:
+    pattern:  emplyee/quiz/candidatedescriptionTest/{id}
+    defaults: { _controller: TSAdminBundle:CandidateTests:descriptionTest }
+ts_admin_checkQuestions:
+    pattern:  emplyee/quiz/checkQuestions
+    defaults: { _controller: TSAdminBundle:CandidateTests:checkQuestions }
+
+#******************************candidates ***************************
+ts_admin_cvs:
+    pattern:  /admin/cvs/{pages}
+    defaults: { _controller: TSAdminBundle:Admin:cvs, pages: 1 }
+    requirements:
+        page:  \d*
+ts_admin_cv:
+    pattern:  /admin/cv/{page}
+    defaults: { _controller: TSAdminBundle:Admin:cv, page: 1 }
+    requirements:
+        page:  \d*
+
+#******************************tests *******************************
+ts_admin_editQuestionn:
+    pattern:  /admin/listExcel
+    defaults: { _controller: TSAdminBundle:Tests:listExcel }
+ts_admin_questions:
+    pattern:  /admin/questions/{pages}
+    defaults: { _controller: TSAdminBundle:Tests:createQuestion,pages: 1 }
+    requirements:
+        page:  \d*
+ts_admin_question:
+    pattern:  /admin/question/{page}
+    defaults: { _controller: TSAdminBundle:Tests:question, page: 1 }
+ts_admin_editQuestionLibrary:
+    pattern:  /admin/editQuestionLibrary
+    defaults: { _controller: TSAdminBundle:Tests:editQuestionLibrary }
+ts_admin_editQuestion:
+    pattern:  /admin/editQuestion
+    defaults: { _controller: TSAdminBundle:Tests:editQuestion }
+ts_admin_removeQuestion:
+    pattern:  /admin/removeQuestion
+    defaults: { _controller: TSAdminBundle:Tests:removeQuestion }
+ts_admin_removeQuestionLibrary:
+    pattern:  /admin/removeQuestionLibrary
+    defaults: { _controller: TSAdminBundle:Tests:removeQuestionLibrary }
+ts_admin_tests:
+    pattern:  /admin/tests
+    defaults: { _controller: TSAdminBundle:Tests:tests }
+ts_admin_test:
+    pattern:  /admin/test/{page}
+    defaults: { _controller: TSAdminBundle:Tests:test, page: 1  }
+ts_admin_editTest:
+    pattern:  /admin/editTest
+    defaults: { _controller: TSAdminBundle:Tests:editTest }
+ts_admin_customizeTest:
+    pattern:  /admin/ CustomizeEditTest
+    defaults: { _controller: TSAdminBundle:Tests:CustomizeEditTest }
+ts_admin_removeTest:
+    pattern:  /admin/removeTest
+    defaults: { _controller: TSAdminBundle:Tests:removeTest }
+ts_admin_settingTest:
+    pattern:  /admin/settingTest/{pages}/{id}
+    defaults: { _controller: TSAdminBundle:Tests:settingTest, pages: 1 }
+    requirements:
+        page:  \d*
+ts_admin_duplicateTest:
+    pattern:  /admin/duplicateTest
+    defaults: { _controller: TSAdminBundle:Tests:duplicateTest }
+ts_admin_uploadQuestion:
+    pattern:  /admin/uploadQuestions
+    defaults: { _controller: TSAdminBundle:Tests:uploadQuestions }
+#******************************status *******************************
+
+
+#******************************Users *******************************
+ts_admin_addCandidate:
+    pattern:  /admin/addCandidate/{pages}  
+    defaults: { _controller: TSAdminBundle:Users:addCandidate,pages:1}
+ts_admin_addRH:
+    pattern:  /admin/addRH
+    defaults: { _controller: TSAdminBundle:Users:addRH }
+ts_admin_addAdmin:
+    pattern:  /admin/addAdmin
+    defaults: { _controller: TSAdminBundle:Users:addAdmin }
+ts_admin_editUser:
+    pattern:  /admin/editUser
+    defaults: { _controller: TSAdminBundle:Users:editUser }  
+ts_admin_editUserSA:
+    pattern:  /admin/editSaUser
+    defaults: { _controller: TSAdminBundle:Users:editSAUser }  
+ts_admin_editCandidate:
+    pattern:  /admin/editCandidate
+    defaults: { _controller: TSAdminBundle:Users:editCandidate }
+ts_admin_removeUser:
+    pattern:  /admin/removeUser 
+    defaults: { _controller: TSAdminBundle:Users:removeUser }
+ts_admin_removeCandidat:
+    pattern:  /admin/removeCandidate
+    defaults: { _controller: TSAdminBundle:Users:removeCandidate }
+    
+#*******************************Tables *****************************
+ts_admin_editTests:
+    pattern:  /admin/editTests
+    defaults: { _controller: TSAdminBundle:Tables:editTests }
+ts_admin_editValue:
+    pattern:  /admin/editValue
+    defaults: { _controller: TSAdminBundle:Tables:editValue }
+ts_admin_removeValue:
+    pattern:  /admin/removeValue 
+    defaults: { _controller: TSAdminBundle:Tables:removeValue }
+
+#*******************************invitation****************************
+ts_admin_invitation:
+    pattern:  /admin/invitation
+    defaults: { _controller: TSAdminBundle:Notification:invitation }
+ts_admin_otherInvitation:
+    pattern:  /admin/TestsInvitation/{id}
+    defaults: { _controller: TSAdminBundle:Notification:persistOtherInvitation }
+ts_admin_confirmInvitation:
+    pattern:  /admin/confirmInvitation
+    defaults: { _controller: TSAdminBundle:Notification:confirmInvitation }
+ts_admin_confirmOtherInvitation:
+    pattern:  /admin/confirmOtherInvitation
+    defaults: { _controller: TSAdminBundle:Notification:confirmOtherInvitation }    
+ts_admin_removeOtherInvitation:
+    pattern:  /admin/removeOtherInvitation
+    defaults: { _controller: TSAdminBundle:Notification:removeOtherInvitation }
+    #*************************stat****************************
+ts_grapheChartLine:
+    path: /chartLine
+    defaults: { _controller: TSAdminBundle:Statistics:stat}
+ts_grapheChartPie:
+    path: /chartPie
+    defaults: { _controller: TSAdminBundle:Statistics:chartPie}

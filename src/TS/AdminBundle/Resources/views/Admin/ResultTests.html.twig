@@ -1,0 +1,41 @@
+
+
+<table class="table table-striped" id="table3excel">
+    <thead class="text-center">
+        <tr>
+            <th></th>
+            <th>Name</th>
+
+            <th>Tests Name</th>
+            <th>Tests Date</th>
+            <th>Eliminatory Mark</th>
+            <th>Mark</th>
+            <th>Remarks</th>
+            
+        </tr> 
+       
+    </thead>
+    <tbody>
+        {% for candidat in listeCandidats %}
+            {% set number="1" %}
+            {% set thisTest="" %}   
+            {% for test in candidat.CandidatTests %} 
+                {% if test.state is same as ("yes") %}
+                    {% set number = number + 1 %}
+                {% endif %} 
+            {% endfor %}
+            <tr >
+                <td id="{{candidat.id}}#" rowspan="{{number}}">{{loop.index}}</td>
+                <td id="{{candidat.id}}##" class="font-bold text-left" rowspan="{{number}}">{{candidat.username}}</td>
+
+                <td> </td><td> </td><td> </td><td> </td>
+            </tr>
+            {% for test in candidat.CandidatTests %}  
+                {% if test.state is same as ("yes") %}
+                    {{ render(controller('TSAdminBundle:Admin:selectResultFreeTest', {'id':test.id} )) }}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+   

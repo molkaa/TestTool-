@@ -1,0 +1,244 @@
+<?php
+
+namespace TS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Offers
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TS\AdminBundle\Entity\OffersRepository")
+ */
+class Offers {
+
+    /**
+     * @ORM\ManyToMany(targetEntity="TS\AdminBundle\Entity\Tests", cascade={"persist"})
+     */
+    private $tests;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="team", type="string", length=100)
+     */
+    private $team;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=50)
+     */
+    private $state;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=255)
+     */
+    private $reference;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longDescription", type="text")
+     */
+    private $longDescription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shortDescription", type="text")
+     */
+    private $shortDescription;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="postedDate", type="date")
+     */
+    private $postedDate;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+
+        $this->postedDate = new \DateTime();
+        $this->tests = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Offers
+     */
+    public function setTitle($title) {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * Set team
+     *
+     * @param string $team
+     * @return Offers
+     */
+    public function setTeam($team) {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return string 
+     */
+    public function getTeam() {
+        return $this->team;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     * @return Offers
+     */
+    public function setReference($reference) {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string 
+     */
+    public function getReference() {
+        return $this->reference;
+    }
+
+    /**
+     * Set longDescription
+     *
+     * @param string $longDescription
+     * @return Offers
+     */
+    public function setLongDescription($longDescription) {
+        $this->longDescription = $longDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get longDescription
+     *
+     * @return string 
+     */
+    public function getLongDescription() {
+        return $this->longDescription;
+    }
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     * @return Offers
+     */
+    public function setShortDescription($shortDescription) {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get shortDescription
+     *
+     * @return string 
+     */
+    public function getShortDescription() {
+        return $this->shortDescription;
+    }
+
+    /**
+     * Set postedDate
+     *
+     * @param \DateTime $postedDate
+     * @return Offers
+     */
+    public function setPostedDate($postedDate) {
+        $this->postedDate = $postedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get postedDate
+     *
+     * @return \DateTime 
+     */
+    public function getPostedDate() {
+        return $this->postedDate;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     * @return Offers
+     */
+    public function setState($state) {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string 
+     */
+    public function getState() {
+        return $this->state;
+    }
+
+
+}

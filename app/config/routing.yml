@@ -1,0 +1,56 @@
+tsldap:
+    resource: "@TSLDAPBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ts_admin:
+    resource: "@TSAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+tss_rec:
+    resource: "@TSSRecBundle/Resources/config/routing.yml"
+    prefix:   /
+ts_candidat:
+    resource: "@TSCandidatBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+
+#//***************************** User Security ****************************
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /candidat
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /candidat
+    
+#//***************************** Admin Security ****************************
+
+
+employeeLogin:
+    pattern:  /employeeLogin
+    defaults: { _controller: TSLDAPBundle:LDAP:loginEmployee }
+emplyeeCheck:
+    pattern:  /employee/employeeCheck
+employeeLogout:
+    pattern:  /emplyee/employeeLogout
+    
+    
+adminLogin:
+    pattern:  /adminLogin
+    defaults: { _controller: TSLDAPBundle:LDAP:login }   
+adminCheck:
+    pattern:  /admin/adminCheck
+adminLogout:
+    pattern:  /admin/adminLogout

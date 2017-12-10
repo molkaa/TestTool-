@@ -1,0 +1,56 @@
+{# src/TS/AdminBundle/Resources/views/Users/addUsers.html.twig #}
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="margin: 20px" id="user-box#" class="content-box box-toggle content-box-closed">
+            <h3 class="content-box-header ui-state-default">
+                <span class="float-left">Add a new user</span>
+                <a class="float-right icon-separator btn toggle-button">
+                    <i id="user-box" onclick="changeElement(this);" class="glyph-icon icon-toggle icon-chevron-down"></i>
+                </a>
+            </h3>
+            <div  class="content-box-wrapper">
+                <form class="col-md-10 center-margin" method="post"{{ form_enctype(form) }}>
+                    <div class="form-row">
+                        <div class="form-input col-md-2">
+                            <label for="">
+                        {{ form_label(form.username) }}
+                            </label>
+                        </div>
+                        <div class="form-input col-md-10">
+                        {{ form_widget(form.username) }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="divider" ></div>
+                        <input type="hidden" name="superhidden" id="superhidden">
+                        <div class="col-md-4 col-md-offset-4">
+                            <input type="submit" value="ADD" name="submitAction" class="btn medium primary-bg radius-all-4" />
+                        </div>
+                    </div>
+                     {{ form_rest(form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function changeElement(_this)
+    {
+
+
+        var div = document.getElementById(_this.id + '#');
+        var div2 = document.getElementById(_this.id);
+
+        if (div.className === "content-box box-toggle content-box-closed") {
+            div2.className = "glyph-icon icon-toggle icon-chevron-up";
+            div.className = "content-box box-toggle";
+        }
+        else {
+            div2.className = "glyph-icon icon-toggle icon-chevron-down";
+            div.className = "content-box box-toggle content-box-closed";
+        }
+
+
+    }
+</script>

@@ -1,0 +1,200 @@
+<?php
+
+namespace TS\CandidatBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AcademicDetails
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TS\CandidatBundle\Entity\AcademicDetailsRepository")
+ */
+class AcademicDetails {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="establishment", type="string", length=50)
+     */
+    private $establishment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Speciality", type="string", length=50)
+     */
+    private $speciality;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="degree", type="string", length=50)
+     */
+    private $degree;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="diploma", type="string", length=20)
+     */
+    private $diploma;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="startYear", type="integer")
+     */
+    private $startYear;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="endYear", type="integer")
+     */
+    private $endYear;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set establishment
+     *
+     * @param string $establishment
+     * @return AcademicDetails
+     */
+    public function setEstablishment($establishment) {
+        $this->establishment = $establishment;
+
+        return $this;
+    }
+
+    /**
+     * Get establishment
+     *
+     * @return string 
+     */
+    public function getEstablishment() {
+        return $this->establishment;
+    }
+
+    /**
+     * Set speciality
+     *
+     * @param string $speciality
+     * @return AcademicDetails
+     */
+    public function setSpeciality($speciality) {
+        $this->speciality = $speciality;
+
+        return $this;
+    }
+
+    /**
+     * Get speciality
+     *
+     * @return string 
+     */
+    public function getSpeciality() {
+        return $this->speciality;
+    }
+
+    /**
+     * Set degree
+     *
+     * @param string $degree
+     * @return AcademicDetails
+     */
+    public function setDegree($degree) {
+        $this->degree = $degree;
+
+        return $this;
+    }
+
+    /**
+     * Get degree
+     *
+     * @return string 
+     */
+    public function getDegree() {
+        return $this->degree;
+    }
+
+    /**
+     * Set diploma
+     *
+     * @param string $diploma
+     * @return AcademicDetails
+     */
+    public function setDiploma($diploma) {
+        $this->diploma = $diploma;
+
+        return $this;
+    }
+
+    /**
+     * Get diploma
+     *
+     * @return string 
+     */
+    public function getDiploma() {
+        return $this->diploma;
+    }
+
+    /**
+     * Set startYear
+     *
+     * @param integer $startYear
+     * @return integer
+     */
+    public function setStartYear($startYear) {
+        $this->startYear = $startYear;
+
+        return $this;
+    }
+
+    /**
+     * Get integer
+     *
+     * @return integer 
+     */
+    public function getStartYear() {
+        return $this->startYear;
+    }
+
+    /**
+     * Set endYear
+     *
+     * @param integer $endYear
+     * @return integer
+     */
+    public function setEndYear($endYear) {
+        $this->endYear = $endYear;
+
+        return $this;
+    }
+
+    /**
+     * Get endYear
+     *
+     * @return integer
+     */
+    public function getEndYear() {
+        return $this->endYear;
+    }
+}

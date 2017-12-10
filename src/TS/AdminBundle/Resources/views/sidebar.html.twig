@@ -1,0 +1,154 @@
+
+<div id="page-sidebar" class="scrollable-content">
+    <div id="sidebar-menu">
+        {% block sidebar %}
+        <!-- #menu-list -->
+        <ul>
+            <!-- #General -->
+            <li>
+                <a href="javascript:;" title="General">
+                    <i class="glyph-icon icon-home"></i>
+                    General
+                    <i class="glyph-icon icon-angle-down" style="float:right"></i>
+                </a>
+                <ul>
+
+                    <li>
+                        <a href="{{ path('ts_admin_cvs') }}" title="Candidates">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Candidates
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{path('ts_admin_allTests')}}" title="Tests Results">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Tests Results
+                        </a>
+                    </li>
+                  
+                </ul>
+
+            </li>
+
+            <!-- #Candidate Status -->
+          
+
+            <!-- #Tests -->
+            <li>
+                <a href="javascript:;" title="Tests">
+                    <i class="glyph-icon icon-tasks"></i>
+                    Tests
+                    <i class="glyph-icon icon-angle-down" style="float:right"></i>
+                </a>
+                <ul>
+                     <li>
+                        <a href="{{path('ts_admin_editTests')}}" title="Tests Type">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Tests Type
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="{{path('ts_admin_questions')}}"  title="Questions library">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Questions library
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="{{path('ts_admin_tests')}}"  title="Tests library">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Tests library
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+
+            <!-- #Statestics -->
+            <li>
+                <a href="javascript:;" title="Show Statistics">
+                    <i class="glyph-icon icon-tasks"></i>
+                    Show Statistics
+                    <i class="glyph-icon icon-angle-down" style="float:right"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{path('ts_grapheChartLine')}}" title="Candidates' Statistics">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Candidates' Statistics
+                        </a>
+                    </li>
+                </ul>
+                             <ul>
+                    <li>
+                        <a href="{{path('ts_grapheChartPie')}}" title="Questions' Statistics">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Questions' Statistics
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- #Edit Table -->
+
+            <!-- #Edit Site -->
+           
+           
+            <!-- #Add Users -->
+            <li>
+                <a href="javascript:;" title="Add Users">
+                    <i class="glyph-icon icon-group"></i>
+                    Add Users
+                    <i class="glyph-icon icon-angle-down" style="float:right"></i>
+                </a>
+                <ul>
+                      {% if  app.session.get('role') is same as ('admin') %}
+                    <li>
+                        <a href="{{path('ts_admin_addAdmin')}}" title="Super Admin">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Super Admin
+                        </a>
+                    </li>
+                     {% endif %}
+                    <li>
+                        <a href="{{path('ts_admin_addRH')}}" title="RH">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            RH
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{path('ts_admin_addCandidate')}}" title="Candidate">
+                            <i class="glyph-icon icon-chevron-right"></i>
+                            Candidate
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+
+
+            <!-- #Maps -->
+           
+
+        </ul>
+        <div class="divider mrg5T mobile-hidden"></div>
+        <!-- #icons-list -->
+        <div class="text-center mobile-hidden">
+            <div class="button-group display-inline">
+
+                <a href="http://www.facebook.com/SunGard" class="btn medium primary-bg tooltip-button" data-placement="top" title="facebook">
+                    <i class="glyph-icon icon-facebook"></i>
+                </a>
+                <a href="http://www.twitter.com/SunGard" class="btn medium primary-bg tooltip-button" data-placement="top" title="twitter">
+                    <i class="glyph-icon icon-twitter"></i>
+                </a>
+                <a href="http://blogs.sungard.com" class="btn medium primary-bg tooltip-button" data-placement="top" title="blogs">
+                    <i class="glyph-icon icon-rss"></i>
+                </a>
+
+            </div>
+
+        </div>
+        {% endblock %}
+    </div>
+</div>

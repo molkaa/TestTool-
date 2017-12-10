@@ -1,0 +1,115 @@
+#user, user ul{
+    margin: 0;
+    position: relative;
+    float: right;
+    font-weight: bold;
+    color: #000;
+    z-index: 3;
+    width: 100%;
+    padding: 10px 0 0 0;
+    list-style: none;
+    /*border-radius: 50px;*/
+}
+#user a{
+    color: #333;
+    padding: 4px 10px 4px 10px;
+    font-size: 81.75%;
+    /*border: 1px solid #ccc;*/
+    text-decoration: none;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    display: block;
+    background-color: #fff;
+}
+#user ul li a {
+    font-size: 11px;
+}
+#user :hover{
+    /*border-color: #333;*/
+}
+//******************************************************************$*/
+
+#user li {
+    float: left;
+    padding: 0 0 10px 0;
+    position: relative;
+}
+
+#user li:hover > a {
+    /*color: #fff;*/
+}
+
+*html #user li a:hover { /* IE6 */
+    /*color: #fff;*/
+}
+
+#user li:hover > ul {
+    display: block;
+}
+
+/* Sub-menu */
+#user ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 99999;
+    /*border-radius: 5px;*/
+}
+
+#user ul li {
+    position: relative;
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;  
+    box-shadow: 0 1px 0 #111111, 
+        0 2px 0 #777777;
+}
+
+#user ul li:last-child { 
+    box-shadow: none;    
+}
+
+#user ul a {    
+    padding: 10px;
+    height: auto;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+    text-transform: none;
+}
+
+*html #user ul a { /* IE6 */   
+    height: 10px;
+    width: 50px;
+}
+
+*:first-child+html #user ul a { /* IE7 */    
+    height: 10px;
+    width: 50px;
+}
+
+#user ul a:hover {
+    /*background-color: #95C11F;*/
+    /*background-image: linear-gradient(#04acec, #0186ba);*/
+}
+
+/* Clear floated elements */
+#user:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+* html #user             { zoom: 1; } /* IE6 */
+*:first-child+html #user { zoom: 1; } /* IE7 */
+

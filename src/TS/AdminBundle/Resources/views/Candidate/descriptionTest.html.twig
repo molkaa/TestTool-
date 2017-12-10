@@ -1,0 +1,58 @@
+{# src/TS/EvaluatorBundle/Resources/views/Candidat/CandidateTest.html.twig #}
+{% extends "TSAdminBundle:Candidate:candidatTests.html.twig" %}
+           
+{% block content %}
+   
+ 
+        
+    <form class="col-md-10 center-margin" method="post" id='myform' >
+        {#                //************************************************#}
+
+
+
+        <div class="content-box mrg25B" style="margin-top: 100px;" >
+            <h3 class="content-box-header primary-bg">
+                <span>Sungard's Quiz</span>
+            </h3>
+
+            <div class="content-box-wrapper">
+               
+                <div class="float-right">
+                    
+                            <span><b>Note:</b></span>
+                       
+                        <div class="content-box-wrapper">
+                            <i class="glyph-icon icon-caret-right"></i> Test will be submitted automatically if the time expired.<br><br>
+                            <i class="glyph-icon icon-caret-right"></i> Don't refresh the page.
+
+                        
+                    </div>
+                            
+                </div>
+                <span class="font-blue" title="Horia Simon">Instruction :</span><br><br>
+                <i class="glyph-icon icon-angle-right"></i> Total number of questions :{%if(test.Customized) is sameas("no")%} {{test.questions | length }} {%else%} {{test.TestStatestics.numberQuestions}} {%endif%}
+                <br><br>
+                <i class="glyph-icon icon-angle-right"></i> Time alloted : <span class="time"><i class="fa fa-clock-o"></i> {{ test.time }} minutes.</span>                   
+                <li>
+                    <br>
+
+                    <a href="{{path('ts_admin_candidateTest', {'id':test.id})}}" title="" >
+                        <i class="glyph-icon icon-chevron-right"></i>
+                        Start Quiz
+                    </a>
+                </li>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </form>
+                
+     
+    
+{% endblock %}

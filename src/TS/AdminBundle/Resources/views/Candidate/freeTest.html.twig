@@ -1,0 +1,42 @@
+{# src/TS/AdminBundle/Resources/views/Candidate/menuTest.html.twig #}
+ <div id="questionone{{question.id}}">
+<u><b>Question {{loop.index}}/{{questions|length}} :</b></u>
+
+<br>
+<br>
+
+<div class="col-md-12">  
+   
+    {% if question.introduction is not null %}
+        <b id="introduction{{question.id}}"></b> 
+        <br/>
+    {% endif %}
+
+<p style="font-weight: bold" id="text{{question.id}}"> </p>
+<br>
+    <script type = "text/javascript">
+        $('b#introduction{{question.id}}').append({{ question.introduction|json_encode|raw}});
+        $('p#text{{question.id}}').append({{ question.text|json_encode|raw}});
+    </script>
+     
+   {% if question.questionPicture is not null %}
+            <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+            <br><br><br><br>
+    {% endif %}
+    
+</div>
+
+<div class="form-row">
+    <div class="form-input col-md-10">
+        <textarea class="large-textarea box-shadow-blue font-blue"   id="free{{question.id}}" name="{{question.id}}"  onblur="tickfree({{question.id}});" ></textarea>
+    </div>
+        
+      <div style="margin-left: 600px" class="form-checkbox-radio col-md-9">
+             <input type="checkbox" name=""  id="checkbox{{question.id}}"  onclick="tick({{question.id}});">
+             <label class="font-gray-dark" for="">Tick to review later</label>
+      </div>
+</div>
+
+<div class="divider" ></div>
+
+<script src="/TestTool/web/js/tick.js"></script>    

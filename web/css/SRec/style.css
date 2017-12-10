@@ -1,0 +1,63 @@
+
+/*//accordion*/ 
+.ac-container input:checked + label,
+.ac-container input:checked + label:hover
+{
+    /*background: #DA2525;*/
+    background-image: url(/TunisiaSite/web/images/barre.png);
+}
+.ac-container .newLabel:hover:after,
+.ac-container input:checked + label:hover:after{
+    background: transparent;	
+}
+.ac-container input:checked + label:hover:after{
+    background: transparent;
+}
+/*//style*/
+.content p.pages span, 
+.content p.pages a:hover 
+{
+    color: #fff;
+    background: #0D8FD1;
+}
+/*headlist*/
+.headlist{
+    background: #0D8FD1;
+}
+.header_resize .menu_nav ul li.menu_list a:hover{
+    text-decoration:none;
+    color:#0D8FD1 ;
+}
+.header_resize .menu_nav {
+    padding-bottom: 0;
+}
+.header_resize .menu_nav ul li.active a {
+    text-decoration:none;
+    color:#0D8FD1 ;
+}
+.header_resize .menu_nav ul li a:hover {
+    text-decoration:none;
+    color:#0D8FD1 ;
+}
+/*//accordion*/ 
+.ac-container input:checked + label,
+.ac-container input:checked + label:hover
+{
+    /*background: #DA2525;*/
+    background-image: url(/TunisiaSite/web/images/barre.png);
+}
+.ac-container .newLabel:hover:after,
+.ac-container input:checked + label:hover:after{
+    background: transparent;	
+}
+.ac-container input:checked + label:hover:after{
+    background: transparent;
+}
+/*//style*/
+.content p.pages span, 
+.content p.pages a:hover 
+{
+    color: #fff;
+    background: #0D8FD1;
+}
+

@@ -1,0 +1,139 @@
+{# src/TS/AdminBundle/Resources/views/Tests/editQuestion.html.twig #}
+<form class="left-side" action="{{ path('ts_admin_editQuestion')}}?id={{id}}&idtest={{idtest}}"  method="post"{{ form_enctype(form) }}>
+    <div class="modal-header">
+        <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+            <i class="glyph-icon icon-remove"></i>
+        </a>
+
+        <h3 id="myModalLabel">Edit Question  : </h3>
+    </div>
+    <div class="modal-body">
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="big-box#" class="content-box box-toggle content-box-wrapper">
+
+                    <div  class="content-box-wrapper">
+
+
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label for="">
+                                    {{ form_label(form.introduction) }}
+                                </label>
+                            </div>
+                            <div class="form-input col-md-10 clearfix" cols="80" id="editor1" name="editor1" rows="10">
+                                {{ form_widget(form.introduction, { 'attr': {'class': 'ckeditor'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label for="">
+                                    {{ form_label(form.text) }}
+                                    <span class="required" style="color:red">*</span>
+                                </label>
+                            </div>
+                            <div class="form-input col-md-10 clearfix" cols="80" rows="10">
+                                {{ form_widget(form.text, { 'attr': {'class': 'ckeditor'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label for="">
+                                    {{ form_label(form.note)  }}
+                                </label>
+                            </div>
+                            <div class="form-input col-md-2">
+                                {{ form_widget(form.note) }}
+                            </div>
+                            <div class="form-label col-md-1">
+                                <label for="" style="color:#d60000">
+                                    {{ form_label(form.questionPicture) }}
+                                </label>
+                            </div>
+                            <div class="form-input col-md-3">
+                               {{ form_widget(form.questionPicture.file,{'attr':{'accept':'.png,.jpeg,.jpg'}}) }}
+                            </div>
+                            <div class="form-label col-md-1">
+                                <label for="" style="color:#d60000">
+                                    tests
+                                    <span class="required" style="color:red">*</span>
+                                </label>
+
+                            </div>
+                            <div class="form-input col-md-3" >
+                                <select id="testsSelect" name="test" class="chosen-select">
+                                    <option></option>
+                                    {% for test in tests%}
+                                        {% if test.name is same as (question.tests) %}
+                                            <option selected value={{test.name}}  >
+                                            {% else %}
+                                            <option  value={{test.name}}  >
+                                            {% endif %}
+                                            {{test.name}}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                               
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                 <label for="">
+                                {{ form_label(form.questionLevel) }}
+                                <span class="required" style="color:red">*</span>
+                                 </label>
+                            </div>
+                            <div class="form-input col-md-10" >
+                                {{ form_widget(form.questionLevel) }}
+                            </div>   
+                        </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label for="" style="color:#d60000" >
+                                    {{ form_label(form.responses) }}*
+                                </label>
+                            </div>
+                            <div class="form-input col-md-10" id="response{{question.id}}">
+                                {{ form_widget(form.responses) }}
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="modal-footer">
+        <div class="col-md-1 float-right">
+            <input type="submit" value="Edit" name="submitAction" class="btn medium primary-bg" />
+
+        </div>
+        <button type="button" data-dismiss="modal" aria-hidden="true" style="width: 7%"  class="center btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+
+
+
+
+
+
+    </div>
+    {{ form_rest(form) }}
+
+
+</form>
+

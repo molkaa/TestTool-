@@ -1,0 +1,364 @@
+.ac-container{
+    width: 100%;
+    margin: 10px auto 30px auto;
+    text-align: left;
+}
+.ac-container .newLabel{
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    padding: 5px 20px;
+    position: relative;
+    z-index: 20;
+    display: block;
+    height: 30px;
+    cursor: pointer;
+    color: #777;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    line-height: 33px;
+    font-size: 19px;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+    box-shadow: 
+        0px 0px 0px 1px rgba(155,155,155,0.3), 
+        1px 0px 0px 0px rgba(255,255,255,0.9) inset, 
+        0px 2px 2px rgba(0,0,0,0.1);
+
+}
+.ac-container .newLabel:hover{
+    background: #fff;
+}
+.ac-container input:checked + label,
+.ac-container input:checked + label:hover{
+    background: #95C11F;
+    color: #fff;
+    text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+    box-shadow: 
+        0px 0px 0px 1px rgba(155,155,155,0.3), 
+        0px 2px 2px rgba(0,0,0,0.1);
+}
+.ac-container .newLabel:hover:after,
+.ac-container input:checked + label:hover:after{
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 13px;
+    top: 7px;
+    background: transparent url(../images/accordion/arrow_down.png) no-repeat center center;	
+}
+.ac-container input:checked + label:hover:after{
+    background-image: url(../images/accordion/arrow_up.png);
+}
+.ac-container input{
+    display: none;
+}
+.ac-container article{
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: -1px;
+    overflow: hidden;
+    height: 0px;
+    position: relative;
+    z-index: 10;
+    -webkit-transition: height 0.6s ease-in-out, box-shadow 0.9s linear;
+    -moz-transition: height 0.6s ease-in-out, box-shadow 0.9s linear;
+    -o-transition: height 0.6s ease-in-out, box-shadow 0.9s linear;
+    -ms-transition: height 0.6s ease-in-out, box-shadow 0.9s linear;
+    transition: height 0.6s ease-in-out, box-shadow 0.9s linear;
+}
+.ac-container article label{
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    line-height: 25px;
+    font-size: 15px;
+    display: inline-block;
+    padding: 2px 4px;
+    font-weight: bold;
+    color: #000;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #999999;
+    border-radius: 3px;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+    cursor: pointer;
+    background: #ffffff;
+}
+.ac-container article input
+{
+    margin: -50px auto auto 150px;
+    font-size: 100%;
+    vertical-align: middle;
+    *overflow: visible;
+    line-height: normal;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    -webkit-appearance: button;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    height: 20px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: auto;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+ /* masquer les label after submit*/ 
+ 
+div#ts_candidatbundle_candidatetype_academicDetails div label,
+div#ts_candidatbundle_candidatetype_professionalExperiences div label,
+div#ts_candidatbundle_candidatetype_technologies div label,
+div#ts_candidatbundle_candidatetype_languages div label
+{
+    display: none;
+}
+/* garder les autres label en bnnes position*/
+article.well.academic div#ts_candidatbundle_candidatetype_academicDetails div div label,
+article.well.professional div#ts_candidatbundle_candidatetype_professionalExperiences div div label,
+article.well.technologies div#ts_candidatbundle_candidatetype_technologies div div label,
+article.well.languages div#ts_candidatbundle_candidatetype_languages div div label
+{
+    display: block;
+}
+.ac-container select,textarea
+{
+    position: absolute;
+    height: 29.5px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+/*les champs du formulaire*/ 
+div#personalDetails,
+div#ts_candidatbundle_candidatetype_academicDetails,
+div#ts_candidatbundle_candidatetype_professionalExperiences,
+div#ts_candidatbundle_candidatetype_technologies,
+div#ts_candidatbundle_candidatetype_languages
+{
+    font-style: italic;
+    color: #777;
+    line-height: 23px;
+    font-size: 14px;
+    padding: 20px;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+}
+div#ts_candidatbundle_candidatetype_technologies div div div,
+div#ts_candidatbundle_candidatetype_languages div div div,
+div#ts_candidatbundle_candidatetype_academicDetails div div div,
+div#ts_candidatbundle_candidatetype_professionalExperiences div div div,
+div#personalDetails div
+{
+    width:50%;
+    float:left;
+    height:57px;
+}
+div#ts_candidatbundle_candidatetype_professionalExperiences div div div:first-child{
+    display: block;
+    clear: both;
+}
+select#ts_candidatbundle_candidatetype_sex{
+    width:17.2%;
+    left: 65.7%;
+    top: 64%;
+}
+select#ts_candidatbundle_candidatetype_candidature{
+    width:17.2%;
+    left: 17.8%;
+    top: 52%;
+}
+select#ts_candidatbundle_candidatetype_familySituation{
+    width:17.2%;
+    left: 17.8%;
+    top: 64%;
+}
+select#ts_candidatbundle_candidatetype_experience{
+    width:17.2%;
+    left: 65.7%;
+    top: 52%;
+}
+input#ts_candidatbundle_candidatetype_picture_file{
+}
+div#ts_candidatbundle_candidatetype_dateOfBirth{
+    position: absolute;
+    left: 170px;
+    top: 190px;
+    width: 100%;
+}
+select#ts_candidatbundle_candidatetype_dateOfBirth_year{
+    width:12.5%;
+    left:22%;
+}
+select#ts_candidatbundle_candidatetype_dateOfBirth_month{
+    width:12%;
+    left:9.5%;
+}
+select#ts_candidatbundle_candidatetype_dateOfBirth_day{
+    width:9%;
+}
+div#ts_candidatbundle_candidatetype_picture div label,
+div#ts_candidatbundle_candidatetype_cv div label,
+div#ts_candidatbundle_candidatetype_motivation div label
+{
+    display:none;
+}
+/*les champs year de academicDetails*/
+div#ts_candidatbundle_candidatetype_academicDetails div div div select,
+div#ts_candidatbundle_candidatetype_technologies div div div select,
+div#ts_candidatbundle_candidatetype_languages div div div select
+{
+    margin:-35px auto auto 150px;
+    width:164px;
+}
+/*les champs date de professionalExperiences*/
+div#ts_candidatbundle_candidatetype_professionalExperiences div div div div :first-child
+{
+    margin-top: -35px;
+    margin-left: 150px;
+}
+div#ts_candidatbundle_candidatetype_professionalExperiences div div div div :nth-child(2) 
+{
+    margin-top: -35px;
+    margin-left: 200px;
+}
+div#ts_candidatbundle_candidatetype_professionalExperiences div div div div :last-child 
+{
+    margin-top: -35px;
+    margin-left: 260px;
+}
+div#ts_candidatbundle_candidatetype_professionalExperiences div div div textarea
+{
+    margin-top: -35px;
+    margin-left: 150px;
+    margin-bottom: 20px;
+    width:64.6%;
+    height: 70px;
+    }
+
+/*les bouttons + input*/
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+    cursor: pointer;
+}
+input[type="file"],
+input[type="image"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+}
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+    width: 100%;
+}
+input[type="submit"].btn {
+    float:right;
+    margin-top: 8px;
+    background: #95C11F;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+    background: -webkit-linear-gradient(top, #95C11F, #95C11F);
+    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+    background: -o-linear-gradient(top, #3e779d, #65a9d7);
+    padding: 0px 18px;
+    height: 30px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 15px;
+    font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    display: block;
+}
+input[type="submit"].btn:hover {
+    border-top-color: #95C11F;
+    background: #95C11F;
+    color: #ccc;
+
+}
+input[type="submit"].btn:active {
+    border-top-color: #95C11F;
+    background: #95C11F;
+} 
+
+.ac-container input:checked ~ article{
+    -webkit-transition: height 0.5s ease-in-out, box-shadow 0.6s linear;
+    -moz-transition: height 0.5s ease-in-out, box-shadow 0.6s linear;
+    -o-transition: height 0.5s ease-in-out, box-shadow 0.6s linear;
+    -ms-transition: height 0.5s ease-in-out, box-shadow 0.6s linear;
+    transition: height 0.5s ease-in-out, box-shadow 0.6s linear;
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+}
+.ac-container input:checked ~ article.well{
+    height: auto;
+}
+.ac-container input:checked ~ article.ac-large{
+    height: 230px;
+}
+
+/*les erreurs******************************/
+article div ul li{
+    position: absolute;
+    display: -webkit-inline-box;
+    padding-left: 10px;
+    color: #95C11F;
+}
+/*modifier le positionnement de descreption de 'personal experience'*/
+article div#ts_candidatbundle_candidatetype_professionalExperiences div div div:nth-child(5) ul li{
+    margin-top: 40px;
+}

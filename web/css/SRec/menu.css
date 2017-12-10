@@ -1,0 +1,53 @@
+.header_resize .menu_nav ul li.menu_list {
+   width: 14%;
+}
+.header_resize .menu_list ul li:nth-child(even) { background: #000; }
+.header_resize .menu_list ul li:nth-child(odd) { background: #000; }
+
+.header_resize .menu_list ul li.n1 {
+    -webkit-transition: 0.2s linear 0.6s;
+    -o-transition: 0.2s linear 0.6s;
+    transition: 0.2s linear 0.6s;
+}
+.header_resize .menu_list ul li.n2 {
+    -webkit-transition: 0.2s linear 0.4s;
+    -o-transition: 0.2s linear 0.4s;
+    transition: 0.2s linear 0.4s;
+}
+.header_resize .menu_list ul li.n3 {
+    -webkit-transition: 0.2s linear 0.2s;
+    -o-transition: 0.2s linear 0.2s;
+    transition: 0.2s linear 0.2s;
+}
+.header_resize .menu_list ul li.n4 {
+    border-radius: 0px 0px 4px 4px;
+    -webkit-transition: 0.2s linear 0s;
+    -o-transition: 0.2s linear 0s;
+    transition: 0.2s linear 0s;
+}
+
+.header_resize .menu_list:hover ul li {
+    -webkit-transform: perspective(350px) rotateX(0deg);
+    -o-transform: perspective(350px) rotateX(0deg);
+    transform: perspective(350px) rotateX(0deg);
+    -webkit-transition:0.2s linear 0s;
+    -o-transition:0.2s linear 0s;
+    transition:0.2s linear 0s;
+}
+.header_resize .menu_list:hover ul li.n2 {
+    -webkit-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+.header_resize .menu_list:hover ul li.n3 {
+    -webkit-transition-delay: 0.4s;
+    -o-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+.header_resize .menu_list:hover ul li.n4 {
+    -webkit-transition-delay: 0.6s;
+    -o-transition-delay: 0.6s;
+    transition-delay: 0.6s;
+}
+
+

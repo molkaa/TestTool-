@@ -1,0 +1,339 @@
+{# src\TS\AdminBundle\Resources\views\admin\timeLine.html.twig #}
+{# src\TS\AdminBundle\Resources\views\admin\cvs.html.twig #}
+{% extends "TSAdminBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}|admin|Setting Tests
+{% endblock %}
+
+{% block icons %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/popup/thickbox-compressed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/popup/thickbox.js') }}"></script>
+   
+  
+
+    <script type="text/javascript" src="{{ asset('js/popup/popup.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/config.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/contents.css') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/styles.js') }}"></script>
+   
+
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block sidebar%}
+    {#    {{ parent() }}#}
+{% endblock %}
+
+{% block right%}
+    {#    {{ parent() }}#}
+{% endblock %}
+
+
+{% block content %}
+   
+   
+    <div id="page-title"></div>
+  
+
+
+    <div class="example-box">
+       
+        
+        <div class="example-code">
+
+            <div class="row">
+             
+                <h3><i class="glyph-icon icon-wrench heading-content"> Setting Test</i></h3>     
+                <br><br>
+                <div class="col-md-12 center-margin">
+                    <div class="row">
+
+                        <div class="col-md-9">
+                            
+                            <table class="table" >
+                                <thead>
+                                    <tr>
+                                        <th>ID </th>
+                                        <th>Type</th> 
+                                        <th>Question</th>
+                                        <th>Preview</th>
+                                        <th>Edit</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if questions is empty%}
+                                        <tr>
+                                            <td>
+
+                                                No questions was found !
+
+                                            <td>
+                                        </tr>
+                                    {% else %}
+                                        {% for question in questions %}
+                                            {% include "TSAdminBundle:Tests:question.html.twig"  %}
+
+                                        {% endfor %}
+                                    {% endif %}
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Question</th>
+                                        <th>Preview</th>
+
+                                        <th>Edit</th>
+                                        <th>Remove</th>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+      <div class="col-md-8">
+        {% if nombrePages == 0 %} 
+           {% else %}
+        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default">
+            <i class="glyph-icon icon-arrow-left"></i>
+        </a>
+        <div class="button-group float-left">
+        {% for p in range(1, nombrePages) %}
+            <a {% if p == pages %} 
+                class="btn disabled large primary-bg"
+            {% endif %} 
+                class="btn large primary-bg" href="{{ path('ts_admin_settingTest', {'pages': p,'id':test.id}) }}">
+                {{p}}
+            </a>
+      {% endfor %}
+        </div>
+        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default">
+            <i class="glyph-icon icon-arrow-right"></i>
+        </a>
+        {% endif %}
+    </div>
+                        </div>
+                          <div class="col-md-3">
+
+                            <div id="external-events" class="content-box bg-white drop-shadow-alt">
+                                <h3 class="content-box-header">
+                                    <div class="glyph-icon icon-separator transparent">
+                                        <i class="glyph-icon icon-archive opacity-60 font-red font-size-18"></i>
+                                    </div>
+                                    <span class="float-left pad0L">Import Questions</span>
+                                    <div class="glyph-icon icon-separator transparent float-right">
+                                        <i class="glyph-icon icon-caret-right font-size-18"></i>
+                                    </div>
+                                </h3>
+                                <div class="content-box-wrapper">
+                                    <div class="btn display-block mrg5B  primary-bg external-event ui-draggable" >
+
+                                        <a href="#ModalImportQuestions" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title=""  onclick="GetIdTest({{test.id}})">
+                                            <span class="glyph-icon icon-separator">
+                                                <i class=" glyph-icon icon-level-down mrg5R"></i>
+                                            </span>
+                                            <span class="button-content">
+                                                Import Questions
+                                            </span>
+                                        </a>
+                                    </div>
+                                            
+
+                                </div>
+                                                      <div class="content-box-wrapper">
+                                                          
+                                                          
+                                    <div class="btn display-block mrg5B  primary-bg external-event ui-draggable" >
+
+                                        <a href="#excelQuestions" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title=""  onclick="GetIdTest({{test.id}})">
+                                            <span class="glyph-icon icon-separator">
+                                                <i class=" glyph-icon icon-level-down mrg5R"></i>
+                                            </span>
+                                            <span class="button-content">
+                                                Import Excel Questions
+                                            </span>
+                                        </a>
+                                    </div>
+                                            
+
+                                </div>
+                                            
+                                            
+                                            
+                                            
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 float-right">
+
+                            <div id="external-events" class="content-box bg-white drop-shadow-alt">
+                                <h3 class="content-box-header">
+                                    <div class="glyph-icon icon-separator transparent">
+                                        <i class="glyph-icon icon-plus opacity-60 font-red font-size-18"></i>
+                                    </div>
+                                    <span class="float-left pad0L">Create Question </span>
+                                    <div class="glyph-icon icon-separator transparent float-right">
+                                        <i class="glyph-icon icon-caret-right font-size-18"></i>
+                                    </div>
+                                </h3>
+                                <div class="content-box-wrapper">
+                                    <div class="btn display-block mrg5B bg-orange external-event ui-draggable">
+                                        <a href="#ModalAddQuestion" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title="" onclick="UpdateTypeQuestion('one')">
+                                            <span class="glyph-icon icon-separator">
+                                                <i class=" glyph-icon icon-dot-circle-o"></i>
+                                            </span>
+                                            <span class="button-content">
+                                                Multiple Choice
+                                            </span>
+                                        </a>
+                                    </div>                    
+                                    <div>
+                                        <div class="btn display-block mrg5B primary-bg external-event ui-draggable" >
+                                            <a href="#ModalAddQuestion" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title="" onclick="UpdateTypeQuestion('many')">
+                                                <span class="glyph-icon icon-separator">
+                                                    <i class=" glyph-icon icon-check-square-o mrg5R"></i>
+                                                </span>
+                                                <span class="button-content">
+                                                    Checkboxes
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="btn display-block mrg5B primary-bg external-event ui-draggable" >
+                                        <a href="#ModalAddQuestion" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title="" onclick="UpdateTypeQuestion('free')">
+                                            <span class="glyph-icon icon-separator">
+                                                <i class=" glyph-icon icon-pencil-square-o mrg5R"></i>
+                                            </span>
+                                            <span class="button-content">
+                                                Essay
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="btn display-block mrg5B primary-bg external-event ui-draggable" >
+                                        <a href="#ModalAddQuestion" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title="" onclick="UpdateTypeQuestion('numeric')">
+                                            <span class="glyph-icon icon-separator">
+                                                <i class=" glyph-icon icon-arrows-alt mrg5R"></i>
+                                            </span>
+                                            <span class="button-content">
+                                                Numeric
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="btn display-block mrg5B bg-orange external-event ui-draggable" >
+                                        <a href="#ModalAddQuestion" class="btn medium primary-bg button-content" tooltip-button data-toggle="modal" data-placement="top" role="button" title="" onclick="UpdateTypeQuestion('menu')">
+                                            <span class="glyph-icon icon-separator">
+                                                <i class=" glyph-icon icon-caret-square-o-down mrg5R"></i>
+                                            </span>
+                                            <span class="button-content">
+                                                Drop Down
+                                            </span>
+                                        </a>
+                                    </div>
+
+
+
+
+                                </div>
+                                
+                                <h3 class="content-box-header">
+                                    <div class="glyph-icon icon-separator transparent">
+                                        <i class="glyph-icon icon-info   opacity-60 font-red font-size-18"></i>
+                                    </div>
+                                    <span class="float-left pad0L">Test information </span>
+                                    <div class="glyph-icon icon-separator transparent float-right">
+                                        <i class="glyph-icon icon-caret-right font-size-18"></i>
+                                    </div>
+                                </h3>
+                                 <div class="content-box-wrapper">
+                                 <div class="infobox info-bg">
+                                    Test Name :  {{test.name}} 
+                                      
+                                </div>
+                               <div class="infobox info-bg ">
+                                   Test Type : {{test.type}}
+                                      
+                                </div>
+                                    <div class="infobox info-bg ">
+                                   Test  Mark : {{test.note}}
+                                      
+                                </div>
+                                    <div class="infobox info-bg ">
+                                   N° Automatic Questions : {{test.automatic}}
+                                      
+                                </div>
+                                    <div class="infobox info-bg ">
+                                   Eliminatory Note : {{test.eliminatoryNote}}
+                                      
+                                </div>
+                                    <div class="infobox info-bg ">
+                                   Test Time : {{test.time}} minutes 
+                                      
+                                </div>
+                                <div class="infobox info-bg ">
+                                   Calculation Method : {{test.calculationMethod}} 
+                                      
+                                </div>
+                                 
+                            </div>
+                            </div>
+                        </div>
+                                             
+                      
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    {% include "TSAdminBundle:Tests:ModalAddQuestion.html.twig"  %}  {% include "TSAdminBundle:Tests:ModalImportQuestions.html.twig"  %}  
+    {% include "TSAdminBundle:Tests:excelQuestions.html.twig"  %}
+
+
+
+
+    <script>
+        function UpdateTypeQuestion(value)
+        {
+            document.getElementById('typeQ').value = value;
+
+        }
+
+        function GetIdTest(value)
+        {
+            document.getElementById('IdTest').value = value;
+        }
+
+    </script>    
+
+
+
+
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+

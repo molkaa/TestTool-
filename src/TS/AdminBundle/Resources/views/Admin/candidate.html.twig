@@ -1,0 +1,80 @@
+{# src/TS/EvaluatorBundle/Resources/views/Candidat/candidate.html.twig #}
+
+{# On utilise une variable temporaire, qu'on définit à false si elle n'est pas déjà définie #}
+{% set accueil = accueil|default(false) %}
+
+    <div class="col-md-6">
+        <div class="content-box border-top border-blue mrg25B">
+            <h3 class="content-header">
+
+                <span> {{ candidat.username}}</span>
+
+                <div class="button-group float-right bg-gray" data-toggle="buttons">
+                  
+                    
+                         <a class="btn medium primary-bg float-right"   href="#ModalInviteCandidate{{candidat.id}}"  title="Invite Candidate" data-id  data-toggle="modal" data-placement="top" role="button">
+                    <span class="glyph-icon icon-separator">
+                        <i class="glyph-icon icon-envelope"></i>
+                    </span>
+                   
+                </a>
+                
+                 
+                </div>
+            </h3>
+            <div class="content-box-wrapper">
+              
+                <div class="divider col-md-12"></div>
+                <div class="row">
+
+                   
+                   
+                    <p class="col-md-10"> 
+                       <i class="glyph-icon icon-envelope-o"></i>
+                       <b>&nbsp{{candidat.username}}@sungard.com </b>
+                    </p>
+                    
+                  
+                </div>
+            </div>
+          
+        </div>
+    </div>    
+ {% include "TSAdminBundle:Notification:ModalInviteCandidate.html.twig"  %}   
+ <script>
+                            
+                            //success
+                            $(function () {
+                            {% for flashMessage in app.session.flashbag.get('notice') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type', 'success');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+                            
+                            
+                            //warnning
+                             $(function () {
+                            {% for flashMessage in app.session.flashbag.get('warnning') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type','danger');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+
+
+                        </script>

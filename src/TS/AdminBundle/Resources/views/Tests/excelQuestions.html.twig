@@ -1,0 +1,60 @@
+
+<div  id="excelQuestions" class="modalTest hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="left-side" method="post"{{ form_enctype(form) }}>
+         <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Import Question </h3>
+        </div>
+         
+         <div class="modal-body">
+             
+             <table class="table text-center">
+                 <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-left">Actions</th>
+                        
+                    </tr>
+                    
+                </thead>
+                {% for q in excelQuestion %}
+                <tr>
+                    <td>{{ q.id }}</td>
+                    <td>{{ q.name }}</td>
+                                   <td class="text-center">
+                                    <div class="form-checkbox-radio ">
+                                        <div class="checkbox-radio">
+                                            <input id="check" class="right" value="{{q.id}}" type="checkbox" name="ids[]" >
+
+                                        </div>
+                                    </div>
+                                </td>
+                </tr>
+                {% endfor %}
+             </table>
+             
+         </div>
+         <div class="modal-footer">
+
+
+            <div class="col-md-1 float-right">
+
+                <input type="hidden" name="superhidden" id="superhidden">
+                <input type="submit" value="Import Excel" name="submitAction" class="btn medium primary-bg" />
+
+            </div>
+
+            <button type="button" data-dismiss="modal" aria-hidden="true" style="width: 7%" class=" btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+             {{ form_rest(form) }}
+    </form>
+</div>
+<link rel="stylesheet" type="text/css" title="Mon design 1" href="/TestTool/web/css/BasicModal/popModal.css">        
+<script type="text/javascript" src="/TestTool/web/js/BasicModal/popModal.js"></script>

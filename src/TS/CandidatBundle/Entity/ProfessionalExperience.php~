@@ -1,0 +1,186 @@
+<?php
+
+namespace TS\CandidatBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProfessionalExperience
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TS\CandidatBundle\Entity\ProfessionalExperienceRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class ProfessionalExperience
+{
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="company", type="string", length=50)
+     */
+    private $company;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="function", type="string", length=20)
+     */
+    private $function;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startDate", type="date")
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="endDate", type="date")
+     */
+    private $endDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     * @return ProfessionalExperience
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set function
+     *
+     * @param string $function
+     * @return ProfessionalExperience
+     */
+    public function setFunction($function)
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    /**
+     * Get function
+     *
+     * @return string 
+     */
+    public function getFunction()
+    {
+        return $this->function;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     * @return ProfessionalExperience
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime 
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * Set endDate
+     *
+     * @param \DateTime $endDate
+     * @return ProfessionalExperience
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get endDate
+     *
+     * @return \DateTime 
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return ProfessionalExperience
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}

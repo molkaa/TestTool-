@@ -1,0 +1,110 @@
+<div  id="ModalAddCandidate" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="left-side" method="post"{{ form_enctype(form) }}>
+
+
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Add Candidate </h3>
+        </div>
+        <div class="modal-body">
+            {# src/TS/AdminBundle/Resources/views/Users/addUsers.html.twig #}
+
+            <div class="form-row">
+
+                <div class="form-input col-md-2">
+                    <label for="">
+                        {{ form_label(form.username) }} <span class="required" style="color:red" >*</span>
+                    </label>
+                </div>
+
+                <div class="form-input col-md-5">
+                    {{ form_widget(form.username) }} 
+                </div>
+
+                <span style="color: red">{{ form_errors(form.username) }}</span>
+
+            </div>
+                <div class="divider mrg0T mrg5B"></div><br>
+                
+            <div class="form-row">
+                <div class="form-input col-md-2">
+                    <label >
+                        date <span class="required" style="color:red" >*</span>
+                    </label>
+                </div>
+                <div class="form-input col-md-5">
+                    <input required="required" type="text" id="datepicker2" name="date" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-input col-md-2">
+                    <label >
+                        hour <span class="required" style="color:red" >*</span>
+                    </label>
+                </div>
+                <div class="form-input bootstrap-timepicker dropdown col-md-5 required" >
+                    <input required="required" class="timepicker input" id="timepicker_24" name="hour" type="text">
+                </div>
+            </div>
+
+            <div id ="tests" class="form-row">
+                <div class="form-input col-md-2">
+                    <label for="">
+                        tests <span class="required" style="color:red" >*</span>
+                    </label>
+                </div> 
+                <div  class="form-input col-md-5" >
+                    <select id="testsSelect" data-placeholder="Choose a test(s)" name="tests[]"  multiple class="chosen-select" required="required">
+                        <option  value=""></option>
+                        {% for test in allTests%}
+                            <option  value={{test.id}}>{{test.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row hidden">
+                <div class="form-input col-md-2">
+                    <label for="">
+                        {{ form_label(form.state) }}
+                    </label>
+                </div>
+                <div class="form-input col-md-5">
+                    {{ form_widget(form.state) }}
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+        <div class="modal-footer">
+
+
+            <div class="col-md-1 float-right">
+
+                <input type="hidden" name="superhidden" id="superhidden">
+                <input  type="submit" value="ADD" name="submitAction" class=" btn medium primary-bg" />
+            </div>
+
+            <button type="button" data-dismiss="modal" aria-hidden="true" style="width: 7%"class=" btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+        {{ form_rest(form) }}
+
+    </form>
+</div>
+
+
+
+

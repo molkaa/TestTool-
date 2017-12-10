@@ -1,0 +1,116 @@
+
+
+<table class="table table-striped" id="table2excel">
+    <thead class="text-center">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Tests Name</th>
+            <th>Tests Date</th>
+            <th>Eliminatory Mark</th>
+            <th>Mark</th>
+            <th>Remarks</th>
+            <th>View Test</th>
+            <th>Edit</th>
+        </tr> 
+        
+    </thead>
+    <tbody>
+        {% for candidat in listeCandidats %}
+            {% set number="1" %}
+            {% set thisTest="" %}   
+            {% for test in candidat.CandidatTests %} 
+                {% if test.state is same as ("yes") %}
+                    {% set number = number + 1 %}
+                {% endif %} 
+            {% endfor %}
+            <tr >
+                <td id="{{candidat.id}}#" rowspan="{{number}}">{{loop.index}}</td>
+                <td id="{{candidat.id}}##" class="font-bold text-left" rowspan="{{number}}">{{candidat.username}}</td>
+
+                <td> </td><td> </td><td> </td><td> </td>
+            </tr>
+            {% for test in candidat.CandidatTests %}  
+                {% if test.state is same as ("yes") %}
+                    {{ render(controller('TSAdminBundle:Admin:selectFreeTest', {'id':test.id} )) }}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+    
+  {#  <a href="" class="btn medium primary-bg float-right" id="button">
+        <span class="glyph-icon icon-separator">
+            <i class="glyph-icon icon-download"></i>
+        </span>
+        <span class="button-content">
+            Export
+        </span>
+    </a>
+<script>
+   
+    $("#button").click(function () {
+
+
+        $("#table3excel").table2excel({
+        });
+
+    });
+   
+</script>#}
+  
+  
+   <a href="#" class="btn medium primary-bg float-right" id="button" onclick="searchAll();">
+        <span class="glyph-icon icon-separator">
+            <i class="glyph-icon icon-download"></i>
+        </span>
+        <span class="button-content">
+            Export
+        </span>
+    </a>
+   <img id="loader" src="{{ asset('assets/images/ajax-loader2.gif')}}" style="display: none;margin-left: 89%" />
+    <script>
+
+
+
+        function searchAll() {
+
+          
+
+            $.ajax({
+                type: 'POST',
+                
+               url: '{{path('ts_admin_allResultTests')}}',
+                beforeSend: function () {
+
+                     document.getElementById("loader").style.display = "block";
+                },
+                dataType: 'HTML', // it's no JSON response!
+
+                success: function (data) {
+                   
+                    $('#AllCandidateByTeam').html(data);
+                     document.getElementById("loader").style.display = "none";
+                    $("#table3excel").table2excel({
+                        });
+
+                   
+                },
+                //Enfin nous lui disons de remplir notre formulaire avec le resultat  
+
+
+                error: function ()
+                {
+                    alert('Error ajax');
+                    
+                }
+
+            }
+
+            )
+        }
+        ;
+
+   
+   </script>
+   <div id="AllCandidateByTeam" style="display: none"></div>   

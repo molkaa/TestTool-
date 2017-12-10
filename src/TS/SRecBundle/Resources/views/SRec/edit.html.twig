@@ -1,0 +1,40 @@
+{# src/TS/SRecBundle/Resources/views/SRec/edit.html.twig #}
+
+{% extends "TSSRecBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+ {{ parent() }}|edit
+{% endblock %}
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+{% block menu_nav %}
+<ul>   
+    <li><a href="{{ path('tss_rec_cvs') }}"><span>CV</span></a></li>
+    <li><a href="{{ path('tss_rec_offers') }}"><span>Offers</span></a></li>
+    <li class="menu_list active">
+        <a href="{{ path('tss_rec_edit') }}"><span>Edit</span></a>
+        <ul>
+            <li class="n1"><a href="ts_evaluator_feed">Home</a></li>
+            <li class="n2"><a href="ts_evaluator_feed">About US </a></li>
+            <li class="n3"><a href="ts_evaluator_feed">Contact US </a></li>
+            <li class="n4"><a href="ts_evaluator_feed">Services</a></li>
+        </ul>
+    </li>
+    <li><a href="{{ path('tss_rec_tests') }}"><span>tests</span></a></li>
+</ul>
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block mainbar%}
+{{ parent() }}
+{% endblock %}
+{% block footer %}
+{{ parent() }}
+{% endblock %}

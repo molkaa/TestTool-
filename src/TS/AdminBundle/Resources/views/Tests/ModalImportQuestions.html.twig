@@ -1,0 +1,143 @@
+
+<div  id="ModalImportQuestions" class="modalTest hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="left-side" method="post"{{ form_enctype(form) }}>
+        <input type="radio" class="hidden" id="IdTest"  name="IdTest" value="" checked="true">
+
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Import Question </h3>
+        </div>
+        <div class="modal-body">
+
+
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Question</th>
+                        <th class="text-center">Note</th>
+                        <th class="text-center">View Responses</th>
+                        <th class="text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+
+
+                    {% for question in questions %}
+
+                        {% if question.tests is sameas(test.type) %}	
+                            <tr>
+                                <td>{{question.id}}</td>
+                                <td class="text-left"> <label for="{{question.id}}"> 
+
+                                        <b class="text-left" id="Alltext{{question.id}}"></b>     {#	<div class="titleModal" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:200px;height: 50px"></div> #}
+                                    </label></td>
+                                <td class="text-center"><div class="label primary-bg">+{{question.note}}</div></td>
+                                <td class="text-center">
+
+
+                                    <a href="#" class=" btn large hover-blue tooltip-button" role="button" title="" id="popModal_ex{{question.id}}">
+                                        <i style="font-size: 2,5em;" class="glyph-icon icon-eye"></i>     
+
+                                        {% include "TSAdminBundle:Tests:ModalViewResponses.html.twig"  %}              
+
+
+
+
+                                        <script>
+
+
+                                            var textq
+                                            = {{ question.text|json_encode|raw}};
+                                                    var textsansespace = textq.replace(/<br\s*[\/]?>/gi, " ")
+                                            var textlimit = textsansespace.substring(0, 100);
+                                            var points = '...'
+
+                                         
+
+                                            $('b#Alltext{{question.id}}').append(textq);
+
+
+                                            $(function () {
+
+
+
+                                                $('#popModal_ex{{question.id}}').click(function () {
+                                                    $('#popModal_ex{{question.id}}').popModal({
+                                                        html: $('#content{{question.id}}'),
+                                                        placement: 'bottomLeft',
+                                                        showCloseBut: true,
+                                                        onDocumentClickClose: true,
+                                                        onDocumentClickClosePrevent: '',
+                                                        overflowContent: false,
+                                                        inline: true,
+                                                        beforeLoadingContent: 'Please, wait...',
+                                                        onOkBut: function () {
+                                                        },
+                                                        onCancelBut: function () {
+                                                        },
+                                                        onLoad: function () {
+                                                        },
+                                                        onClose: function () {
+                                                        }
+                                                    });
+                                                });
+
+
+
+                                            });
+                                        </script>
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="form-checkbox-radio ">
+                                        <div class="checkbox-radio">
+                                            <input id="check" class="right" value="{{question.id}}" type="checkbox" name="ids[]" >
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </tbody>
+
+
+            </table>                   
+
+
+
+        </div>
+        <div class="modal-footer">
+
+
+            <div class="col-md-1 float-right">
+
+                <input type="hidden" name="superhidden" id="superhidden">
+                <input type="submit" value="Import" name="submitAction" class="btn medium primary-bg" />
+
+            </div>
+
+            <button type="button" data-dismiss="modal" aria-hidden="true" style="width: 7%" class=" btn medium primary-bg" data-toggle="button">Close</button>
+
+
+
+        </div>
+        {{ form_rest(form) }}
+        
+
+
+    </form>
+</div>
+<link rel="stylesheet" type="text/css" title="Mon design 1" href="/TestTool/web/css/BasicModal/popModal.css">        
+<script type="text/javascript" src="/TestTool/web/js/BasicModal/popModal.js"></script>

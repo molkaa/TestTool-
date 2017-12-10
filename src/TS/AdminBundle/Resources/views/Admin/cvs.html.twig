@@ -1,0 +1,103 @@
+{# src\TS\AdminBundle\Resources\views\admin\cvs.html.twig #}
+{% extends "TSAdminBundle::layout.html.twig" %}
+{% block title %}
+ {{ parent() }}|admin|InviteCandidate
+{% endblock %}
+
+{% block icons %}
+  {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+ {% block sidebar %}
+{{ parent() }}
+{% endblock %}
+
+{% block right %}
+{{ parent() }}
+{% endblock %}
+
+
+{% block content%}
+<div id="page-title"></div>
+{% include "TSAdminBundle:Admin:research.html.twig" %}
+<div class="row">
+{% for candidat in listeCandidat %}
+    {% include "TSAdminBundle:Admin:candidate.html.twig" with {'accueil': true} %}
+{% endfor %}
+</div>
+<div class="row">
+    <div class="col-md-4">
+        {% if nombrePages == 0 %} 
+           {% else %}
+        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default">
+            <i class="glyph-icon icon-arrow-left"></i>
+        </a>
+        <div class="button-group float-left">
+        {% for p in range(1, nombrePages) %}
+            <a {% if p == pages %} 
+                class="btn disabled large primary-bg"
+            {% endif %} 
+                class="btn large primary-bg" href="{{ path('ts_admin_cvs', {'pages': p}) }}">
+                {{p}}
+            </a>
+      {% endfor %}
+        </div>
+        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default">
+            <i class="glyph-icon icon-arrow-right"></i>
+        </a>
+        {% endif %}
+    </div>
+</div>
+<script>
+                            
+                            //success
+                            $(function () {
+                            {% for flashMessage in app.session.flashbag.get('notice') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type', 'success');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+                            
+                            
+                            //warnning
+                             $(function () {
+                            {% for flashMessage in app.session.flashbag.get('warnning') %}   
+                                var notify = $.notify('{{ flashMessage }}', {
+                                    animate: {
+                                        enter: 'animated bounceIn',
+                                        exit: 'animated bounceOut'
+                                    }
+                                });
+                                notify.update('type','danger');
+                                setTimeout(function () {
+                                    $.notifyClose();
+                                }, 3000);
+                            {% endfor %}
+                            });
+
+
+                        </script>
+
+{{ parent() }}
+
+{% endblock %}

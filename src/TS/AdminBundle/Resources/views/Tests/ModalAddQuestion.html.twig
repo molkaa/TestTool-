@@ -1,0 +1,126 @@
+
+<div  id="ModalAddQuestion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="left-side" method="post"{{ form_enctype(form) }}>
+        
+        
+        <div class="modal-header">
+            <a href="#" class="float-right" data-placement="left" title="close" data-dismiss="modal">
+                <i class="glyph-icon icon-remove"></i>
+            </a>
+
+            <h3 id="myModalLabel">Add Question </h3>
+        </div>
+        <div class="modal-footer">
+
+
+        <div class="col-md-1 float-right">
+
+                <input type="hidden" name="superhidden" id="superhidden">
+                <input  type="submit" value="ADD" name="submitAction" class=" btn medium primary-bg" />
+            </div>
+
+            <button type="button" data-dismiss="modal" aria-hidden="true" style="width: 7%"class=" btn medium primary-bg" data-toggle="button">Close</button>
+            
+
+
+        </div>
+        <div class="modal-body">
+            <input type="radio" class="hidden" id="typeQ"  name="type" value="" checked="true">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="big-box#" class="content-box box-toggle content-box-wrapper">
+                        <div  class="content-box-wrapper">
+
+
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        {{ form_label(form.introduction) }}
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10 clearfix" cols="80" id="editor1" name="editor1" rows="10">
+                                    {{ form_widget(form.introduction, { 'attr': {'class': 'ckeditor'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        {{ form_label(form.text) }}
+                                        <span class="required" style="color:red">*</span>
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10 clearfix" cols="80" rows="10">
+                                    {{ form_widget(form.text, { 'attr': {'class': 'ckeditor'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    {{ form_label(form.note) }}
+                                    <span class="required" style="color:red">*</span>
+                                </div>
+                                <div class="form-input col-md-2">
+                                    {{ form_widget(form.note,{ 'attr': {'class': 'spinner-input'} })  }}
+                                </div>
+                                <div class="form-input col-md-1">
+                                    {{ form_label(form.questionPicture) }}
+                                </div>
+                                <div class="form-input col-md-3">
+                                    {{ form_widget(form.questionPicture.file,{'attr':{'accept':'.png,.jpeg,.jpg'}}) }}
+                                </div>
+                                <div class="form-input col-md-1">
+                                    tests
+                                    <span class="required" style="color:red">*</span>
+                                </div>
+                                <div class="form-input col-md-3" >
+                                    <select id="testsSelect" name="test" class="chosen-select">
+                                      
+                                        
+                                            <option  value={{test.type}}  >
+                                                {{test.type}}
+                                            </option>
+
+                                      
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                      <div class="form-input col-md-2">
+
+                                            {{ form_label(form.questionLevel) }}
+                                            <span class="required" style="color:red">*</span>
+
+                                        </div>
+                                    <div class="form-input col-md-10" >
+                                        {{ form_widget(form.questionLevel) }}
+                                    </div>   
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input col-md-2">
+                                    <label for="">
+                                        {{ form_label(form.responses) }}
+                                        <span class="required" style="color:red" >*</span>
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10">
+                                    {{ form_widget(form.responses) }}
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        {{ form_rest(form) }}
+        {% include "TSAdminBundle:Tests:formulaire.html.twig"  %}
+    </form>
+</div>
+    
+            
+           
+                
+           

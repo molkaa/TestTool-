@@ -1,0 +1,66 @@
+{# src/TS/AdminBundle/Resources/views/Users/showUser.html.twig #}
+{% set accueil = accueil|default(false) %}
+<tr>
+    <td class="font-bold ">
+         {% if user.state is same as("enable") %}
+          <img title="enable" src="/TestTool/web/images/icons/yes.png" />
+                {% else %}
+                    <img title="disable" src="/TestTool/web/images/icons/no.png" />
+                {% endif %}
+                &nbsp;&nbsp;&nbsp;
+        {{user.username}}
+    </td>
+  
+    
+    <td class="text-center float-right">
+        
+        <a id="edit-user{{user.id}}" onclick="changeEditUser(this);" class="btn small hover-blue tooltip-button" data-placement="top" title="" data-original-title="Edit">
+            <i class="glyph-icon icon-edit"></i>
+        </a>
+        <a id="remove-user{{user.id}}" onclick="changeRemoveUser(this);" class="btn small hover-red tooltip-button" data-placement="top" title="" data-original-title="Remove">
+            <i class="glyph-icon icon-trash-o"></i>
+        </a>
+    </td>
+</tr>
+
+{#////*********************************** edit page ********************************#}
+<tr class="row col-md-12 text-center" id="edit-user{{user.id}}#" style="display:none">
+    <td style="width: 900px;" class="center-margin">
+        {{ render(controller('TSAdminBundle:Users:selectEditCandidate', {'id':user.id,'role':user.role} )) }}
+    </td>
+</tr>
+{#////*********************************** remove page ********************************#}
+<tr class="row col-md-12 text-center" id="remove-user{{user.id}}#" style="display:none">
+    <td style="width: 900px;" class="center-margin">
+        {{ render(controller('TSAdminBundle:Users:selectRemoveCandidate', {'id':user.id,'role':user.role} )) }}
+    </td>
+</tr>
+
+{#////*********************************** Change element Script  ********************************#}
+
+<script>
+
+    function changeEditUser(_this)
+    {
+        var tr = document.getElementById(_this.id + '#');
+
+        if (tr.style.display === "none") {
+            tr.style.display = "block";
+        }
+        else {
+            tr.style.display = "none";
+        }
+    }
+    function changeRemoveUser(_this)
+    {
+        var tr = document.getElementById(_this.id + '#');
+
+        if (tr.style.display === "none") {
+            tr.style.display = "block";
+        }
+        else {
+            tr.style.display = "none";
+        }
+    }
+</script>
+

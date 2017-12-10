@@ -1,0 +1,67 @@
+#formFeed{
+    margin-top: 30px;
+}
+div#ts_evaluatorbundle_interviewtype_evaluator div div div,
+div#individual div,
+div#motivated div,
+div#relation div,
+div#intellectual div,
+div#comments div
+{
+    width:50%;
+    float:left;
+    height:57px;
+}
+div#ts_evaluatorbundle_interviewtype_evaluator,
+div#individual,
+div#motivated ,
+div#relation ,
+div#intellectual ,
+div#comments 
+{
+    font-style: italic;
+    color: #777;
+    line-height: 23px;
+    font-size: 14px;
+    padding: 20px;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+}
+select,
+textarea
+{
+    width: 17.2%;
+    margin-top: -35px;
+    margin-left: 150px;
+}
+textarea{
+
+    margin-bottom: 20px;
+    width: 64.6%;
+    height: 70px;
+}
+.ac-container input:checked ~ article.well.com {
+    height: 150px;
+}
+article.well.evaluator label{
+    display:none;
+}
+div#ts_evaluatorbundle_interviewtype_evaluator div div div label{
+    display:inherit;
+}
+.ac-container input:checked + label,
+.ac-container input:checked + label:hover {
+    /*background: #DA2525;*/
+    /*background-image: url(../../images/barre.png);*/
+    color: #DA2525;
+    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+}
+input[type="submit"].btn,
+input[type="submit"].btn:hover
+{
+background: #DA2525;
+background: -webkit-linear-gradient(top, #DA2525, #DA2525);
+}
+.ac-container .newLabel {
+color: #DA2525;
+}

@@ -1,0 +1,69 @@
+{# src/TS/AdminBundle/Resources/views/Candidate/numericEditTest.html.twig #}
+<div id="questionone{{question.id}}">
+    <u><b>Question :</b></u>
+    <br>
+    <br>
+    <div class="col-md-12">  
+        
+        {% if question.introduction is not null %}
+            <b id="introduction{{question.id}}">{{ question.introduction|raw}}</b> 
+            <br/>
+        {% endif %}
+
+        <p style="font-weight: bold" id="text{{question.id}}">{{ question.text|raw}}</p>
+        <br>
+        {% if question.questionPicture is not null %}
+            <img height="400" width="600" src="{{ asset(question.questionPicture.webPath) }}" alt="{{ question.questionPicture.name }}">
+            <br><br>
+        {% endif %}
+</div>
+<br><br>
+<h5>Candidat Answer</h5>
+<div class="form-row">
+    <div class="col-md-8">
+        {% set i = 0 %}
+        {% for candidateResponse in test.responses %}  
+            {% if (candidateResponse.questionId is same as (question.id)) and (question.responses[i].value is sameas (candidateResponse.response)) %}
+                <div class="form-label col-md-4">
+                    <label class="font-blue">
+                        {{question.responses[i].response}}
+                    </label>
+                </div>
+
+                <div class="form-input col-md-8">
+                    <input value="{{candidateResponse.response}}" placeholder=""  style="color:green ;" class="col-md-12" type="text" >
+                </div>
+                {% set i=i+1 %}
+            {% elseif (candidateResponse.questionId is same as (question.id)) and (question.responses[i].value is not  sameas (candidateResponse.response)) %}
+                <div class="form-label col-md-4">
+                    <label class="font-blue">
+                        {{question.responses[i].response}}
+                    </label>
+                </div>
+
+                <div class="form-input col-md-8">
+                    <input value="{{candidateResponse.response}}" placeholder="" style="color: red;"class="col-md-12" type="text" >
+                </div>
+                {% set i=i+1 %}
+            {% endif %}
+        {% endfor %} 
+    </div>        
+</div>
+<h5>Correct Answer</h5>
+<div class="form-row">
+    <div class="col-md-8">
+        {% for response in question.responses %}
+            <div class="form-label col-md-4">
+                <label class="font-blue" for="{{question.id}}">
+                    {{response.response}}
+                </label>
+            </div>
+            <div class="form-input col-md-8">
+                <input value="{{response.value}}" id="numeric{{response.id}}{{question.id}}" placeholder="" class="col-md-12" type="text" name="{{question.id}}+{{response.id}}">
+            </div>
+        {%endfor %}
+    </div>
+</div>
+<br>
+<div class="divider" ></div>
+</div>

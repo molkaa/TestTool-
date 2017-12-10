@@ -1,0 +1,47 @@
+{# src/TS/EvaluatorBundle/Resources/views/Candidat/CandidateEditTest.html.twig #}
+{% extends "TSAdminBundle:Candidate:candidatTests.html.twig" %}
+{% block content %}
+
+    <div class="row ">
+
+        <div class="col-md-12" style="margin-top:20px">
+            <div class="content-box border-top border-bottom border-blue mrg25B col-md-11 center-margin">
+                <h3 class="content-header">
+                    <span> <b> {{name}} Edit </b></span>
+                </h3>
+                <div class="content-box-wrapper">
+                    <form class="col-md-10 center-margin" method="post" >
+                        {#                //************************************************#}
+                        {% for question in ques %}
+                            {{question}}
+                        {% endfor %}
+                        {% for question in questions %}
+                            {% if question.type == ('one') %}
+                                {% include "TSAdminBundle:Candidate:oneEditTest.html.twig" %}
+                            {% elseif question.type == ('many') %}
+                                {% include "TSAdminBundle:Candidate:manyEditTest.html.twig" %}
+                            {% elseif question.type == ('menu') %}
+                                {% include "TSAdminBundle:Candidate:menuEditTest.html.twig" %}
+                            {% elseif question.type == ('numeric') %}
+                                {% include "TSAdminBundle:Candidate:numericEditTest.html.twig" %}
+                            {% elseif question.type == ('free') %}
+                                {% include "TSAdminBundle:Candidate:freeEditTest.html.twig" %}
+                            {% endif %}
+                        {% endfor %}
+                        {#                //*****************
+                        
+                        *******************************#}
+                        <div class="form-row">
+                            <div class="divider" ></div>
+                            <input type="hidden" name="superhidden" id="superhidden">
+                            <div class="col-md-4 col-md-offset-4">
+                                <input type="submit" value="Submit" name="submitEdit" class="btn medium primary-bg radius-all-4" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

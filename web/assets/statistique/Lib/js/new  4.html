@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html>
+      <head>
+          <meta charset="utf-8" />
+          <script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+          <!--script type="text/javascript" src="knockout-3.0.0.js"></script-->
+          <!--script type="text/javascript" src="angular.min.js"></script-->
+          <script type="text/javascript" src="globalize.min.js"></script>
+          <script type="text/javascript" src="dx.chartjs.js"></script>
+		  
+		      <!-- ... -->
+    <script type="text/javascript">
+        $(function () {
+           $('#gaugeContainer').dxCircularGauge({
+	scale: {
+		startValue: 0,
+		endValue: 100,
+		majorTick: {
+			tickInterval: 10
+		},
+		label: {
+			customizeText: function (arg) {
+				return arg.valueText + ' %';
+			}
+		}
+	},
+	rangeContainer: {
+		ranges: [
+			{ startValue: 0, endValue: 20, color: '#CE2029' },
+			{ startValue: 20, endValue: 50, color: '#FFD700' },
+			{ startValue: 50, endValue: 100, color: '#228B22' }
+		]
+	},
+	title: {
+		text: 'Battery Charge',
+		font: { size: 28 }
+	},
+	value: 45
+});
+        })
+		
+    </script>
+      </head>
+      <body>
+	  
+   <div id="gaugeContainer" style="height:320px"></div>
+</body>
+  </html>
